@@ -1,1 +1,157 @@
 @import "tailwindcss";
+
+/* ==========================================
+   GLOBAL
+========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #050505;
+  color: white;
+  overflow-x: hidden;
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  background: #050505;
+}
+
+/* ==========================================
+   GLITCH TEXT
+========================================== */
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(20% 0 50% 0);
+  }
+
+  10% {
+    clip-path: inset(10% 0 60% 0);
+  }
+
+  20% {
+    clip-path: inset(35% 0 15% 0);
+  }
+
+  30% {
+    clip-path: inset(15% 0 55% 0);
+  }
+
+  40% {
+    clip-path: inset(50% 0 10% 0);
+  }
+
+  50% {
+    clip-path: inset(25% 0 40% 0);
+  }
+
+  60% {
+    clip-path: inset(10% 0 65% 0);
+  }
+
+  70% {
+    clip-path: inset(45% 0 5% 0);
+  }
+
+  80% {
+    clip-path: inset(30% 0 30% 0);
+  }
+
+  90% {
+    clip-path: inset(15% 0 55% 0);
+  }
+
+  100% {
+    clip-path: inset(35% 0 20% 0);
+  }
+}
+
+.animate-glitch-after {
+  animation:
+    glitch var(--after-duration)
+    infinite
+    linear
+    alternate-reverse;
+}
+
+.animate-glitch-before {
+  animation:
+    glitch var(--before-duration)
+    infinite
+    linear
+    alternate-reverse;
+}
+
+/* ==========================================
+   STAR BORDER
+========================================== */
+
+@keyframes star-movement-bottom {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-100%, 0%);
+    opacity: 0;
+  }
+}
+
+@keyframes star-movement-top {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(100%, 0%);
+    opacity: 0;
+  }
+}
+
+.animate-star-movement-bottom {
+  animation:
+    star-movement-bottom
+    linear
+    infinite
+    alternate;
+}
+
+.animate-star-movement-top {
+  animation:
+    star-movement-top
+    linear
+    infinite
+    alternate;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00e5ff;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff3b3b;
+}

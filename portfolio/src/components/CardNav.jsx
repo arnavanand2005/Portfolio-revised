@@ -148,13 +148,13 @@ const CardNav = ({
 
   return (
     <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[900px] z-[99] top-6 ${className}`}
+      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-225 z-99 top-6 ${className}`}
     >
       <nav
         ref={navRef}
         className={`card-nav ${
           isExpanded ? "open" : ""
-        } block h-[60px] rounded-xl relative overflow-hidden backdrop-blur-md`}
+        } block h-15 rounded-xl relative overflow-hidden backdrop-blur-md`}
         style={{
           backgroundColor: baseColor,
           border: "1px solid rgba(0,229,255,0.2)",
@@ -162,17 +162,15 @@ const CardNav = ({
             "0 0 20px rgba(0,229,255,0.15), 0 0 40px rgba(255,59,59,0.08)",
         }}
       >
-        {/* TOP BAR */}
 
-        <div className="absolute inset-x-0 top-0 h-[60px] flex items-center justify-between px-4 z-[2]">
+        <div className="absolute inset-x-0 top-0 h-15 flex items-center justify-between px-4 z-[2]">
 
-          {/* HAMBURGER */}
 
           <div
             onClick={toggleMenu}
             role="button"
             tabIndex={0}
-            className="flex flex-col gap-[6px] cursor-pointer"
+            className="flex flex-col gap-1.5 cursor-pointer"
             style={{ color: menuColor }}
           >
             <div
@@ -184,15 +182,14 @@ const CardNav = ({
             />
 
             <div
-              className={`w-[30px] h-[2px] bg-current transition-all duration-300 ${
+              className={`w-7.5 h-[2px] bg-current transition-all duration-300 ${
                 isHamburgerOpen
-                  ? "-translate-y-[4px] -rotate-45"
+                  ? "-translate-y-1 -rotate-45"
                   : ""
               }`}
             />
           </div>
 
-          {/* LOGO */}
 
           <div className="absolute left-1/2 -translate-x-1/2">
             <h1 className="font-bold text-xl tracking-[0.3em]">

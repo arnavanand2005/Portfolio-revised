@@ -1,4 +1,5 @@
-import ElectricBorder from "../components/ElectricBorder";
+import StarBorder from "../components/StarBorder";
+import GlitchText from "../components/GlitchText";
 
 import {
   FaGithub,
@@ -14,29 +15,29 @@ export default function Contact() {
     >
       <div className="max-w-6xl mx-auto">
 
-        <ElectricBorder
-          color="#00E5FF"
+        <GlitchText
           speed={1}
-          chaos={0.08}
-          borderRadius={28}
+          enableShadows={true}
+          className="text-5xl md:text-6xl mb-4"
         >
-          <div className="bg-black/95 backdrop-blur-md p-8 md:p-14 rounded-[28px]">
+          CONTACT
+        </GlitchText>
 
-            {/* HEADER */}
+        <p className="text-zinc-400 text-lg mb-12">
+          Let's build something amazing together.
+        </p>
 
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">
-              Contact
-            </h2>
+        <div className="grid lg:grid-cols-2 gap-8">
 
-            <p className="text-zinc-400 text-lg mb-12">
-              Let's build something amazing together.
-            </p>
+          {/* LEFT CARD */}
 
-            {/* GRID */}
-
-            <div className="grid lg:grid-cols-2 gap-12">
-
-              {/* LEFT SIDE */}
+          <StarBorder
+            color="#00E5FF"
+            speed="2s"
+            thickness={2}
+            className="w-full"
+          >
+            <div className="p-8">
 
               <form className="space-y-5">
 
@@ -46,14 +47,16 @@ export default function Contact() {
                   className="
                     w-full
                     bg-transparent
-                    border border-cyan-400/30
+                    border
+                    border-cyan-400/30
                     rounded-xl
                     p-4
                     text-white
                     outline-none
                     transition-all
+                    duration-300
                     focus:border-cyan-400
-                    focus:shadow-[0_0_20px_rgba(0,229,255,0.25)]
+                    focus:shadow-[0_0_20px_rgba(0,229,255,0.3)]
                   "
                 />
 
@@ -63,14 +66,16 @@ export default function Contact() {
                   className="
                     w-full
                     bg-transparent
-                    border border-cyan-400/30
+                    border
+                    border-cyan-400/30
                     rounded-xl
                     p-4
                     text-white
                     outline-none
                     transition-all
+                    duration-300
                     focus:border-cyan-400
-                    focus:shadow-[0_0_20px_rgba(0,229,255,0.25)]
+                    focus:shadow-[0_0_20px_rgba(0,229,255,0.3)]
                   "
                 />
 
@@ -80,48 +85,53 @@ export default function Contact() {
                   className="
                     w-full
                     bg-transparent
-                    border border-cyan-400/30
+                    border
+                    border-cyan-400/30
                     rounded-xl
                     p-4
                     text-white
                     outline-none
                     transition-all
+                    duration-300
                     focus:border-cyan-400
-                    focus:shadow-[0_0_20px_rgba(0,229,255,0.25)]
+                    focus:shadow-[0_0_20px_rgba(0,229,255,0.3)]
                   "
                 />
 
                 <textarea
-                  rows="7"
+                  rows={7}
                   placeholder="Your Message..."
                   className="
                     w-full
                     bg-transparent
-                    border border-cyan-400/30
+                    border
+                    border-cyan-400/30
                     rounded-xl
                     p-4
                     text-white
-                    outline-none
                     resize-none
+                    outline-none
                     transition-all
+                    duration-300
                     focus:border-cyan-400
-                    focus:shadow-[0_0_20px_rgba(0,229,255,0.25)]
+                    focus:shadow-[0_0_20px_rgba(0,229,255,0.3)]
                   "
                 />
 
                 <button
                   type="submit"
                   className="
+                    w-full
+                    py-4
+                    rounded-xl
                     bg-red-500
                     hover:bg-red-600
                     text-white
-                    px-8
-                    py-4
-                    rounded-xl
                     font-semibold
                     transition-all
-                    hover:scale-105
-                    shadow-[0_0_25px_rgba(255,59,59,0.45)]
+                    duration-300
+                    hover:scale-[1.02]
+                    shadow-[0_0_25px_rgba(255,59,59,0.4)]
                   "
                 >
                   SEND TRANSMISSION
@@ -129,151 +139,153 @@ export default function Contact() {
 
               </form>
 
-              {/* RIGHT SIDE */}
+            </div>
+          </StarBorder>
 
-              <div className="flex flex-col justify-center">
+          {/* RIGHT CARD */}
 
-                <h3 className="text-cyan-400 text-2xl font-semibold mb-8">
-                  Connect With Me
-                </h3>
+          <StarBorder
+            color="#FFFFFF"
+            speed="3s"
+            thickness={2}
+            className="w-full"
+          >
+            <div className="p-8 h-full">
 
-                <div className="space-y-7">
+              <h3 className="text-cyan-400 text-3xl font-semibold mb-10 text-center">
+                Connect With Me
+              </h3>
 
-                  {/* GITHUB */}
+              <div className="space-y-8">
 
-                  <a
-                    href="https://github.com/arnavanand2005"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="
-                      flex items-center gap-5
-                      text-white
-                      transition-all
-                      hover:text-cyan-400
-                      group
-                    "
-                  >
-                    <FaGithub
-                      className="
-                        text-4xl
-                        transition-all
-                        duration-300
-                        group-hover:rotate-12
-                        group-hover:scale-125
-                      "
-                    />
-
-                    <div>
-                      <p className="font-semibold">
-                        GitHub
-                      </p>
-
-                      <p className="text-sm text-zinc-400">
-                        github.com/arnavanand2005
-                      </p>
-                    </div>
-                  </a>
-
-                  {/* LINKEDIN */}
-
-                  <a
-                    href="https://www.linkedin.com/in/arnav-anand-056710315/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="
-                      flex items-center gap-5
-                      text-white
-                      transition-all
-                      hover:text-cyan-400
-                      group
-                    "
-                  >
-                    <FaLinkedin
-                      className="
-                        text-4xl
-                        transition-all
-                        duration-300
-                        group-hover:-rotate-12
-                        group-hover:scale-125
-                      "
-                    />
-
-                    <div>
-                      <p className="font-semibold">
-                        LinkedIn
-                      </p>
-
-                      <p className="text-sm text-zinc-400">
-                        Connect professionally
-                      </p>
-                    </div>
-                  </a>
-
-                  {/* EMAIL */}
-
-                  <a
-                    href="mailto:arnavanand2005@gmail.com"
-                    className="
-                      flex items-center gap-5
-                      text-white
-                      transition-all
-                      hover:text-red-400
-                      group
-                    "
-                  >
-                    <FaEnvelope
-                      className="
-                        text-4xl
-                        transition-all
-                        duration-300
-                        group-hover:rotate-12
-                        group-hover:scale-125
-                      "
-                    />
-
-                    <div>
-                      <p className="font-semibold">
-                        Email
-                      </p>
-
-                      <p className="text-sm text-zinc-400">
-                        arnavanand2005@gmail.com
-                      </p>
-                    </div>
-                  </a>
-
-                </div>
-
-                {/* INFO CARD */}
-
-                <div
+                <a
+                  href="https://github.com/arnavanand2005"
+                  target="_blank"
+                  rel="noreferrer"
                   className="
-                    mt-10
-                    border border-cyan-400/20
-                    rounded-2xl
-                    p-6
-                    bg-white/[0.02]
+                    flex items-center gap-5
+                    text-white
+                    hover:text-cyan-400
+                    transition-all
+                    duration-300
+                    group
                   "
                 >
-                  <h4 className="text-cyan-400 font-semibold mb-4">
-                    Available For
-                  </h4>
+                  <FaGithub
+                    className="
+                      text-5xl
+                      transition-all
+                      duration-300
+                      group-hover:scale-125
+                      group-hover:rotate-12
+                    "
+                  />
 
-                  <ul className="space-y-3 text-zinc-300">
-                    <li>• Full Stack Web Development</li>
-                    <li>• React.js Applications</li>
-                    <li>• AI / Machine Learning Projects</li>
-                    <li>• Open Source Contributions</li>
-                    <li>• Freelance Collaborations</li>
-                  </ul>
-                </div>
+                  <div>
+                    <p className="font-semibold text-lg">
+                      GitHub
+                    </p>
+
+                    <p className="text-sm text-zinc-400">
+                      github.com/arnavanand2005
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/arnav-anand-056710315/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="
+                    flex items-center gap-5
+                    text-white
+                    hover:text-cyan-400
+                    transition-all
+                    duration-300
+                    group
+                  "
+                >
+                  <FaLinkedin
+                    className="
+                      text-5xl
+                      transition-all
+                      duration-300
+                      group-hover:scale-125
+                      group-hover:-rotate-12
+                    "
+                  />
+
+                  <div>
+                    <p className="font-semibold text-lg">
+                      LinkedIn
+                    </p>
+
+                    <p className="text-sm text-zinc-400">
+                      Connect professionally
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href="mailto:arnavanand2005@gmail.com"
+                  className="
+                    flex items-center gap-5
+                    text-white
+                    hover:text-red-400
+                    transition-all
+                    duration-300
+                    group
+                  "
+                >
+                  <FaEnvelope
+                    className="
+                      text-5xl
+                      transition-all
+                      duration-300
+                      group-hover:scale-125
+                      group-hover:rotate-12
+                    "
+                  />
+
+                  <div>
+                    <p className="font-semibold text-lg">
+                      Email
+                    </p>
+
+                    <p className="text-sm text-zinc-400">
+                      arnavanand2005@gmail.com
+                    </p>
+                  </div>
+                </a>
 
               </div>
 
-            </div>
+              <div
+                className="
+                  mt-10
+                  border
+                  border-cyan-400/20
+                  rounded-2xl
+                  p-6
+                "
+              >
+                <h4 className="text-cyan-400 font-semibold mb-4 text-center">
+                  Available For
+                </h4>
 
-          </div>
-        </ElectricBorder>
+                <ul className="space-y-3 text-zinc-300 text-center">
+                  <li>• Full Stack Web Development</li>
+                  <li>• React.js Applications</li>
+                  <li>• AI / Machine Learning Projects</li>
+                  <li>• Open Source Contributions</li>
+                  <li>• Freelance Collaborations</li>
+                </ul>
+              </div>
+
+            </div>
+          </StarBorder>
+
+        </div>
 
       </div>
     </section>
