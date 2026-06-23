@@ -154,18 +154,16 @@ const CardNav = ({
         ref={navRef}
         className={`card-nav ${
           isExpanded ? "open" : ""
-        } block h-15 rounded-xl relative overflow-hidden backdrop-blur-md`}
+        } block h-15 rounded-2xl relative overflow-hidden backdrop-blur-xl`}
         style={{
           backgroundColor: baseColor,
           border: "1px solid rgba(0,229,255,0.2)",
-          boxShadow:
-            "0 0 20px rgba(0,229,255,0.15), 0 0 40px rgba(255,59,59,0.08)",
+          boxShadow: "0 0 30px rgba(0,229,255,0.15), 0 0 60px rgba(255,59,59,0.08)",
         }}
       >
+        <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-400 to-transparent animate-pulse" />
 
-        <div className="absolute inset-x-0 top-0 h-15 flex items-center justify-between px-4 z-[2]">
-
-
+        <div className="absolute inset-x-0 top-0 h-15 flex items-center justify-between px-4 z-2">
           <div
             onClick={toggleMenu}
             role="button"
@@ -174,9 +172,9 @@ const CardNav = ({
             style={{ color: menuColor }}
           >
             <div
-              className={`w-[30px] h-[2px] bg-current transition-all duration-300 ${
+              className={`w-7.5 h-0.5 bg-current transition-all duration-300 ${
                 isHamburgerOpen
-                  ? "translate-y-[4px] rotate-45"
+                  ? "translate-y-1 rotate-45"
                   : ""
               }`}
             />
@@ -192,26 +190,37 @@ const CardNav = ({
 
 
           <div className="absolute left-1/2 -translate-x-1/2">
-            <h1 className="font-bold text-xl tracking-[0.3em]">
-              <span className="text-cyan-400">A</span>
-              <span className="text-white">RNAV</span>
-            </h1>
+          <h1 className="font-black text-xl tracking-[0.25em]">
+            <span className="text-cyan-400">ARNAV</span>
+            <span className="text-red-500">.</span>
+            <span className="text-white">//DEV</span>
+          </h1>
           </div>
 
-          {/* BUTTON */}
 
           <button
-            className="hidden md:flex px-4 h-10 items-center rounded-lg font-medium"
+          className="
+hidden md:flex
+px-5
+h-10
+items-center
+rounded-xl
+font-black
+tracking-[0.15em]
+transition-all
+duration-300
+hover:scale-105
+hover:shadow-[0_0_25px_rgba(255,59,59,0.4)]
+"
             style={{
               backgroundColor: buttonBgColor,
               color: buttonTextColor,
             }}
           >
-            Resume
+            DOWNLOAD CV
           </button>
         </div>
 
-        {/* CARDS */}
 
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-3 flex flex-col gap-3 ${
@@ -224,7 +233,7 @@ const CardNav = ({
             <div
               key={idx}
               ref={setCardRef(idx)}
-              className="rounded-xl p-4 flex flex-col gap-3 flex-1"
+              className="rounded-2xl p-5 flex flex-col gap-4 flex-1 border border-white/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:rotate--[0.5deg]  hover:scale-[1.02] hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(0,229,255,0.25)]"
               style={{
                 backgroundColor: item.bgColor,
                 color: item.textColor,
@@ -240,10 +249,14 @@ const CardNav = ({
                     key={i}
                     href={lnk.href}
                     aria-label={lnk.ariaLabel}
-                    className="flex items-center gap-2 hover:opacity-75 transition"
+                    className=" group flex items-center justify-between gap-2 rounded-lg px-3 py-2 transition-all duration-300 hover:bg-black/20 hover:translate-x-1"
                   >
-                    <GoArrowUpRight />
-                    {lnk.label}
+                    <GoArrowUpRight
+                    className="transition-transform duration-300 group-hover:rotate-45 group-hover:scale-125 "/>
+                    <span>{lnk.label}</span>
+
+              <GoArrowUpRight
+  className="transition-transform duration-300 group-hover:rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1"/>
                   </a>
                 ))}
               </div>
