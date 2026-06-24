@@ -1,18 +1,22 @@
-
 import { useState } from "react";
 import DecryptedText from "../components/DecryptedText";
 import BorderGlow from "../components/BorderGlow";
+import santos1 from "../assets/santos-1.png";
+import santos2 from "../assets/santos-2.png";
+import santos3 from "../assets/santos-3.png";
+import santos4 from "../assets/santos-4.png";
 
 const projects = [
   {
     title: "LOS SANTOS ESTATES",
     category: "FULL STACK MERN",
-    image: "/placeholder-project.png",
+    images: [santos1, santos2, santos3, santos4],
+    image: santos1,
     description:
       "Modern real estate platform featuring authentication, property listings, image uploads, search filters and responsive design.",
     tech: ["React", "Node.js", "MongoDB", "Express"],
-    github: "#",
-    demo: "#",
+    github: "https://github.com/arnavanand2005/Mern-stack-estate",
+    demo: "https://mern-stack-estate-b5hs.onrender.com",
     loc: "1,240 LINES",
     status: "DEPLOYED",
     hash: "0x8F3A2",
@@ -107,6 +111,17 @@ const projects = [
 
 export default function Projects() {
   const [selected, setSelected] = useState(projects[0]);
+  const [activeImage, setActiveImage] = useState(0);
+
+  // Helper to resolve current picture feed source accurately
+  const getActiveImageSrc = () => {
+    if (selected.images && selected.images.length > 0) {
+      return selected.images[activeImage];
+    }
+    return selected.image;
+  };
+
+  const hasValidImage = selected.image && selected.image !== "/placeholder-project.png";
 
   return (
     <section
@@ -184,7 +199,10 @@ export default function Projects() {
                     return (
                       <button
                         key={project.title}
-                        onClick={() => setSelected(project)}
+                        onClick={() => {
+                          setSelected(project);
+                          setActiveImage(0);
+                        }}
                         className={`w-full text-left p-4 rounded-xl transition-all duration-200 relative group border cursor-pointer overflow-hidden
                         ${
                           isSelected
@@ -291,9 +309,9 @@ export default function Projects() {
                       {/* Interactive Visual Scanning Laser Beam Line Overlay Animation */}
                       <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent top-0 animate-[bounce_4s_infinite_ease-in-out] pointer-events-none shadow-[0_0_10px_rgba(0,229,255,1)]" />
 
-                      {selected.image && selected.image !== "/placeholder-project.png" ? (
+                      {hasValidImage ? (
                         <img
-                          src={selected.image}
+                          src={getActiveImageSrc()}
                           alt={selected.title}
                           className="w-full h-full object-cover rounded-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                         />
@@ -303,19 +321,41 @@ export default function Projects() {
                             <span className="inline-block w-2 h-2 bg-cyan-400 rounded-full animate-ping" />
                             VISUAL_STREAM_LINK_NULL
                           </span>
-                          <p className="text-zinc-600 text-[10px] tracking-wide">BUFFER_FEED_FALLBACK_ACTIVE // {selected.hash}</p>
+                          <p className="text-zinc-600 text-[10px] tracking-wide">
+                            BUFFER_FEED_FALLBACK_ACTIVE // {selected.hash}
+                          </p>
+                        </div>
+                      )}
+
+                      {selected.images && selected.images.length > 1 && (
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20 bg-black/60 px-3 py-1.5 rounded-full border border-zinc-900 backdrop-blur-md">
+                          {selected.images.map((img, index) => (
+                            <button
+                              key={index}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveImage(index);
+                              }}
+                              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                                activeImage === index
+                                  ? "bg-cyan-400 w-4 shadow-[0_0_12px_rgba(0,229,255,0.8)]"
+                                  : "bg-zinc-700 hover:bg-zinc-500"
+                              }`}
+                            />
+                          ))}
                         </div>
                       )}
                       
-                      <div className="absolute bottom-2 inset-x-0 text-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute bottom-2 left-3 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
                         <span className="text-[8px] text-zinc-500 bg-zinc-900/80 px-2 py-0.5 rounded border border-zinc-800">SCAN_FREQUENCY_OK</span>
                       </div>
                     </div>
 
-                    {/* Operational Matrix CTA Button Handles */}
                     <div className="grid grid-cols-2 gap-4">
                       <a
                         href={selected.demo}
+                        target="_blank"
+                        rel="noreferrer"
                         className="relative group py-4 rounded-xl overflow-hidden font-black text-xs tracking-[0.2em] text-center text-black bg-gradient-to-r from-cyan-400 to-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
                       >
                         LAUNCH_LIVE_CLIENT →
@@ -323,6 +363,8 @@ export default function Projects() {
 
                       <a
                         href={selected.github}
+                        target="_blank"
+                        rel="noreferrer"
                         className="relative group py-4 rounded-xl overflow-hidden font-black text-xs tracking-[0.2em] text-center border border-red-500/40 text-red-400 bg-red-950/10 hover:border-red-500 hover:bg-red-500 hover:text-white hover:shadow-[0_0_25px_rgba(239,68,68,0.3)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
                       >
                         SOURCE_FILE [GIT]
@@ -330,9 +372,7 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Right Column Component Layout: Descriptions & Core Parameters Tagging */}
                   <div className="space-y-6">
-                    {/* Manifest Description Module Container Box */}
                     <div className="border border-zinc-900 bg-black/40 p-5 rounded-xl relative">
                       <div className="absolute top-0 right-4 w-6 h-[1px] bg-cyan-400" />
                       <p className="text-zinc-500 text-[9px] font-bold uppercase tracking-widest mb-3 border-b border-zinc-900/60 pb-2">
@@ -343,7 +383,6 @@ export default function Projects() {
                       </p>
                     </div>
 
-                    {/* Dependency System Stack Tag Module Box */}
                     <div className="border border-zinc-900 bg-black/40 p-5 rounded-xl relative">
                       <div className="absolute bottom-0 left-4 w-6 h-[1px] bg-red-500" />
                       <p className="text-zinc-500 text-[9px] font-bold uppercase tracking-widest mb-3">
@@ -366,7 +405,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Console Baseline Modular Footer Bar */}
               <div className="pt-4 mt-8 border-t border-zinc-900 flex justify-between items-center text-[9px] text-zinc-600 tracking-wider">
                 <span>DAT_LINK: //LOCALHOST:3000</span>
                 <span className="hidden sm:inline">TRANS_STREAM_STATUS_OK // 200</span>
@@ -380,4 +418,3 @@ export default function Projects() {
     </section>
   );
 }
-
