@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
+import cv from "../assets/cv.pdf";
 
 const CardNav = ({
   items,
@@ -163,13 +164,12 @@ const CardNav = ({
       >
         <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-400 to-transparent animate-pulse" />
 
-        <div className="absolute inset-x-0 top-0 h-15 flex items-center justify-between px-4 z-2">
+        <div className="absolute inset-x-0 top-0 h-15 flex items-center justify-between px-4 z-[2]">
           <div
             onClick={toggleMenu}
             role="button"
             tabIndex={0}
-            className="flex flex-col gap-1.5 cursor-pointer"
-            style={{ color: menuColor }}
+            className="flex flex-col gap-1.5 cursor-pointer text-cyan-400 hover:text-red-400 transition-colors duration-300"
           >
             <div
               className={`w-7.5 h-0.5 bg-current transition-all duration-300 ${
@@ -190,35 +190,20 @@ const CardNav = ({
 
 
           <div className="absolute left-1/2 -translate-x-1/2">
-          <h1 className="font-black text-xl tracking-[0.25em]">
+          <h1 className="font-black text-xl tracking-[0.25em] drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]">
             <span className="text-cyan-400">ARNAV</span>
             <span className="text-red-500">.</span>
             <span className="text-white">//DEV</span>
           </h1>
           </div>
 
-
-          <button
-          className="
-hidden md:flex
-px-5
-h-10
-items-center
-rounded-xl
-font-black
-tracking-[0.15em]
-transition-all
-duration-300
-hover:scale-105
-hover:shadow-[0_0_25px_rgba(255,59,59,0.4)]
-"
-            style={{
-              backgroundColor: buttonBgColor,
-              color: buttonTextColor,
-            }}
-          >
-            DOWNLOAD CV
-          </button>
+            <a
+            href={cv}
+            download="Arnav_Anand_resume.pdf"
+            className="hidden md:flex px-5 h-10 items-center rounded-xl font-black tracking-[0.15em] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,59,59,0.4)]"
+            style={{ backgroundColor: buttonBgColor, color: buttonTextColor,}}>
+               DOWNLOAD CV
+              </a>
         </div>
 
 
@@ -233,7 +218,8 @@ hover:shadow-[0_0_25px_rgba(255,59,59,0.4)]
             <div
               key={idx}
               ref={setCardRef(idx)}
-              className="rounded-2xl p-5 flex flex-col gap-4 flex-1 border border-white/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:rotate--[0.5deg]  hover:scale-[1.02] hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(0,229,255,0.25)]"
+              className="rounded-2xl p-5 flex flex-col gap-4 flex-1 border border-white/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:rotate-[0.5deg]  hover:scale-[1.02] hover:border-cyan-400/50
+               hover:shadow-[0_0_30px_rgba(0,229,255,0.25)]"
               style={{
                 backgroundColor: item.bgColor,
                 color: item.textColor,
@@ -251,12 +237,10 @@ hover:shadow-[0_0_25px_rgba(255,59,59,0.4)]
                     aria-label={lnk.ariaLabel}
                     className=" group flex items-center justify-between gap-2 rounded-lg px-3 py-2 transition-all duration-300 hover:bg-black/20 hover:translate-x-1"
                   >
-                    <GoArrowUpRight
-                    className="transition-transform duration-300 group-hover:rotate-45 group-hover:scale-125 "/>
+                   
                     <span>{lnk.label}</span>
 
-              <GoArrowUpRight
-  className="transition-transform duration-300 group-hover:rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1"/>
+              <GoArrowUpRight className="transition-transform duration-300 group-hover:rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1"/>
                   </a>
                 ))}
               </div>
