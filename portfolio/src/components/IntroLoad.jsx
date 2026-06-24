@@ -40,7 +40,7 @@ export default function IntroLoad({ onComplete }) {
     </p>
 
     <div className="mt-8 w-64 h-[2px] bg-white/10 overflow-hidden rounded-full">
-        <div className="h-full w-full bg-gradient-to-r from-cyan-400 via-white to-red-500 animate-pulse" />
+        <div className="h-full w-full bg-linear-to-r from-cyan-400 via-white to-red-500 animate-pulse" />
     </div>
 
     </div>
