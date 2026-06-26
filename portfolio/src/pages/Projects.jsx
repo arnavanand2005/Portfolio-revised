@@ -5,6 +5,11 @@ import santos1 from "../assets/santos-1.png";
 import santos2 from "../assets/santos-2.png";
 import santos3 from "../assets/santos-3.png";
 import santos4 from "../assets/santos-4.png";
+import amcs1 from "../assets/amcs.png"
+import amcs2 from "../assets/amcs-2.png"
+import amcs3 from "../assets/amcs-3.png"
+import amcs4 from "../assets/amcs-4.png"
+
 
 const projects = [
   {
@@ -24,12 +29,13 @@ const projects = [
   {
     title: "AMCS",
     category: "RESEARCH PROJECT",
-    image: "/placeholder-project.png",
+    images:[amcs1,amcs2,amcs3,amcs4],
+    image: amcs1,
     description:
       "Adaptive Multi-Criteria Search for autonomous delivery bots with multi-objective path planning and optimization.",
     tech: ["Python", "AI", "Optimization"],
-    github: "#",
-    demo: "#",
+    github: "https://github.com/Patric420/minor",
+    demo: "https://patric420-minor-app-ladj3e.streamlit.app",
     loc: "3,820 LINES",
     status: "STABLE",
     hash: "0x3C9B1",
@@ -40,7 +46,7 @@ const projects = [
     image: "/placeholder-project.png",
     description: "Official student club website built with modern frontend frameworks.",
     tech: ["React", "Tailwind"],
-    github: "#",
+    github: "https://github.com/SQAC-Tech/sqac-website",
     demo: "#",
     loc: "840 LINES",
     status: "LIVE",
@@ -52,7 +58,7 @@ const projects = [
     image: "/placeholder-project.png",
     description: "Modern restaurant landing page and responsive ordering client.",
     tech: ["React", "CSS"],
-    github: "#",
+    github: "https://github.com/arnavanand2005/Brunos-PIZZERIA",
     demo: "#",
     loc: "450 LINES",
     status: "COMPLETED",
@@ -64,10 +70,10 @@ const projects = [
     image: "/placeholder-project.png",
     description: "Dynamic weather application with live contextual API integration and location rendering.",
     tech: ["React", "OpenWeather API"],
-    github: "#",
+    github: "https://github.com/arnavanand2005/SkySense",
     demo: "#",
     loc: "610 LINES",
-    status: "OPERATIONAL",
+    status: "ARCHIVED",
     hash: "0x77X1C",
   },
   {
@@ -76,7 +82,7 @@ const projects = [
     image: "/placeholder-project.png",
     description: "Responsive higher-education university landing architecture.",
     tech: ["React", "Tailwind"],
-    github: "#",
+    github: "https://github.com/arnavanand2005/EduSity-",
     demo: "#",
     loc: "1,100 LINES",
     status: "ARCHIVED",
@@ -88,10 +94,10 @@ const projects = [
     image: "/placeholder-project.png",
     description: "Minecraft-inspired immersive vector web experience and user routing hubs.",
     tech: ["React"],
-    github: "#",
+    github: "https://github.com/SQAC-Tech/Event-Mineverse",
     demo: "#",
-    loc: "920 LINES",
-    status: "MAINTENANCE",
+    loc: "xxyy... LINES",
+    status: "ARCHIVED",
     hash: "0x44P6K",
   },
   {
@@ -113,7 +119,6 @@ export default function Projects() {
   const [selected, setSelected] = useState(projects[0]);
   const [activeImage, setActiveImage] = useState(0);
 
-  // Helper to resolve current picture feed source accurately
   const getActiveImageSrc = () => {
     if (selected.images && selected.images.length > 0) {
       return selected.images[activeImage];
@@ -128,23 +133,17 @@ export default function Projects() {
       id="projects"
       className="min-h-screen bg-black py-24 px-4 sm:px-8 lg:px-12 relative overflow-hidden font-mono select-none"
     >
-      {/* Laser Scanning Tech Backdrop Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,229,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(0,229,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#000000_95%)] pointer-events-none" />
 
-      {/* Extreme Neon Bleeds */}
       <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none animate-pulse" />
       <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-red-500/5 blur-[160px] rounded-full pointer-events-none animate-pulse" />
 
-      {/* Global Interface Bounding Corners */}
       <div className="absolute top-4 left-4 text-zinc-800 text-[10px] tracking-widest hidden md:block">SYS_REF // 409-NX</div>
       <div className="absolute top-4 right-4 text-zinc-800 text-[10px] tracking-widest hidden md:block">LOC_0x7FFF</div>
 
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* ========================================== */}
-        {/* HEADER SECTION */}
-        {/* ========================================== */}
         <div className="text-center mb-20 relative">
           <div className="react-bits-glitch inline-block">
             <DecryptedText

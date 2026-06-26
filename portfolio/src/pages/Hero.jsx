@@ -1,11 +1,21 @@
-import React from 'react'
+import ASCIIText from "../components/AsciiText";
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <div>
-      Hero
-    </div>
-  )
-}
+    <section className="h-[350px] flex flex-col items-center justify-center gap-4 bg-black">
+      <ASCIIText
+        text="Hey!"
+        enableWaves
+        asciiFontSize={9}
+      />
 
-export default Hero
+      <ASCIIText
+        text="I'm Arnav Anand!"
+        enableWaves
+        asciiFontSize={9}
+      />
+
+    </section>
+    
+  );
+}
