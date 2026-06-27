@@ -9,6 +9,16 @@ import amcs1 from "../assets/amcs.png"
 import amcs2 from "../assets/amcs-2.png"
 import amcs3 from "../assets/amcs-3.png"
 import amcs4 from "../assets/amcs-4.png"
+import bruno1 from "../assets/bruno-1.png"
+import bruno2 from "../assets/bruno-2.png"
+import bruno3 from "../assets/bruno-3.png"
+import edusity1 from "../assets/edusity-1.png"
+import edusity2 from "../assets/edusity-2.png"
+import edusity3 from "../assets/edusity-3.png"
+import edusity4 from "../assets/edusity-4.png"
+import skysense from "../assets/skysense.png"
+import sqac from "../assets/sqac.png"
+import mineverse from "../assets/mineverse.png"
 
 
 const projects = [
