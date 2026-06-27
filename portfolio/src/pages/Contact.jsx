@@ -28,15 +28,12 @@ export default function Contact() {
       id="contact"
       className="bg-black min-h-screen py-24 px-4 sm:px-8 lg:px-12 flex items-center justify-center relative overflow-hidden font-sans select-none"
     >
-      {/* BACKGROUND GRAPHICAL OVERLAYS */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#000000_90%)] pointer-events-none" />
       
-      {/* Chromatic Ambience Backdrops */}
       <div className="absolute top-10 left-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none animate-pulse" />
       <div className="absolute bottom-10 right-1/4 w-[600px] h-[600px] bg-red-500/5 rounded-full blur-[160px] pointer-events-none animate-pulse" />
 
-      {/* COMPONENT BOUNDING BOX CORNER MARKERS */}
       <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-zinc-800 pointer-events-none" />
       <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-zinc-800 pointer-events-none" />
       <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-zinc-800 pointer-events-none" />
@@ -44,9 +41,7 @@ export default function Contact() {
 
       <div className="w-full max-w-7xl mx-auto relative z-10 flex flex-col items-center">
 
-        {/* ========================================== */}
-        {/* HEADER AREA & INTENSE CONTINUOUS GLITCH WRAPPER */}
-        {/* ========================================== */}
+       
         <div className="text-center mb-16 relative w-full max-w-4xl">
           <div className="absolute top-0 left-0 text-[10px] font-mono text-zinc-600 tracking-widest hidden md:block">
             SYS.LOC // TERMINAL_CONNECT
@@ -55,20 +50,18 @@ export default function Contact() {
             VERSION 4.0.0-BETA
           </div>
 
-          {/* Forced React Bits Vibration Layout */}
           <div className="react-bits-glitch inline-block mt-4 md:mt-0">
             <GlitchText
               speed={0.4}
               enableShadows={true}
               enableOnHover={false}
-              className="!text-6xl sm:!text-8xl md:!text-9xl font-black tracking-tighter text-white uppercase"
+              className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter text-white uppercase"
             >
               CONTACT
             </GlitchText>
           </div>
 
-          {/* Tri-Color Spectrum Laser Divider Line */}
-          <div className="relative mx-auto mt-6 h-[2px] w-64 bg-gradient-to-r from-cyan-400 via-white to-red-500 shadow-[0_0_20px_rgba(0,229,255,0.6)]">
+          <div className="relative mx-auto mt-6 h-0.5 w-64 bg-gradient-to-r from-cyan-400 via-white to-red-500 shadow-[0_0_20px_rgba(0,229,255,0.6)]">
             <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45 border border-black" />
           </div>
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import DecryptedText from "../components/DecryptedText";
 import BorderGlow from "../components/BorderGlow";
 import santos1 from "../assets/santos-1.png";
@@ -19,108 +19,241 @@ import edusity4 from "../assets/edusity-4.png"
 import skysense from "../assets/skysense.png"
 import sqac from "../assets/sqac.png"
 import mineverse from "../assets/mineverse.png"
+import PlasmaWave from "../components/PlasmaWave";
+import CircularGallery from '../components/CircularGallery'
 
 
 const projects = [
   {
     title: "LOS SANTOS ESTATES",
     category: "FULL STACK MERN",
+    featured: true,
+
     images: [santos1, santos2, santos3, santos4],
     image: santos1,
+
     description:
-      "Modern real estate platform featuring authentication, property listings, image uploads, search filters and responsive design.",
-    tech: ["React", "Node.js", "MongoDB", "Express"],
+      "A full-stack MERN real estate platform featuring secure authentication, property management, image uploads, advanced search filters, and a responsive user experience. Designed to simulate a modern property marketplace with production-ready architecture.",
+
+    tech: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind",
+      "Firebase",
+    ],
+
     github: "https://github.com/arnavanand2005/Mern-stack-estate",
     demo: "https://mern-stack-estate-b5hs.onrender.com",
+
+    year: "2026",
+    role: "Full Stack Developer",
+    type: "Featured",
+    status: "LIVE",
+
     loc: "1,240 LINES",
-    status: "DEPLOYED",
     hash: "0x8F3A2",
   },
+
   {
     title: "AMCS",
-    category: "RESEARCH PROJECT",
-    images:[amcs1,amcs2,amcs3,amcs4],
+    category: "AI RESEARCH",
+    featured: true,
+
+    images: [amcs1, amcs2, amcs3, amcs4],
     image: amcs1,
+
     description:
-      "Adaptive Multi-Criteria Search for autonomous delivery bots with multi-objective path planning and optimization.",
-    tech: ["Python", "AI", "Optimization"],
+      "Adaptive Multi-Criteria Search (AMCS) is an AI-powered path planning framework designed for autonomous delivery systems. It evaluates multiple constraints including distance, energy, traffic, curvature and turn penalties to generate optimal routes.",
+
+    tech: [
+      "Python",
+      "Streamlit",
+      "AI",
+      "Optimization",
+      "Graph Search",
+    ],
+
     github: "https://github.com/Patric420/minor",
     demo: "https://patric420-minor-app-ladj3e.streamlit.app",
+
+    year: "2026",
+    role: "AI Researcher",
+    type: "Featured",
+    status: "DEPLOYED",
+
     loc: "3,820 LINES",
-    status: "STABLE",
     hash: "0x3C9B1",
   },
+
   {
     title: "SQAC WEBSITE",
-    category: "WEB DEVELOPMENT",
-    image: "/placeholder-project.png",
-    description: "Official student club website built with modern frontend frameworks.",
-    tech: ["React", "Tailwind"],
+    category: "WEB PLATFORM",
+
+    images: [sqac],
+    image: sqac,
+
+    description:
+      "Official website developed for the SRM Quality Assurance Club, providing an engaging digital presence with responsive layouts, modern UI components and scalable frontend architecture.",
+
+    tech: [
+      "React",
+      "Tailwind",
+      "JavaScript",
+    ],
+
     github: "https://github.com/SQAC-Tech/sqac-website",
-    demo: "#",
-    loc: "840 LINES",
+    demo: "https://www.sqac.space",
+
+    year: "2025",
+    role: "Frontend Developer",
+    type: "Organization",
     status: "LIVE",
+
+    loc: "840 LINES",
     hash: "0x91A4E",
   },
+
   {
     title: "BRUNO'S PIZZERIA",
-    category: "REACT PROJECT",
-    image: "/placeholder-project.png",
-    description: "Modern restaurant landing page and responsive ordering client.",
-    tech: ["React", "CSS"],
+    category: "RESTAURANT WEBSITE",
+
+    images: [bruno1, bruno2, bruno3],
+    image: bruno1,
+
+    description:
+      "A modern restaurant landing page featuring elegant animations, responsive layouts and an immersive dining experience built entirely with React.",
+
+    tech: [
+      "React",
+      "CSS",
+      "JavaScript",
+    ],
+
     github: "https://github.com/arnavanand2005/Brunos-PIZZERIA",
-    demo: "#",
-    loc: "450 LINES",
+    demo: "https://brunos-pizzeria.vercel.app",
+
+    year: "2025",
+    role: "Frontend Developer",
+    type: "Personal",
     status: "COMPLETED",
+
+    loc: "450 LINES",
     hash: "0x55B2F",
   },
+
   {
     title: "SKYSENSE",
     category: "WEATHER APPLICATION",
-    image: "/placeholder-project.png",
-    description: "Dynamic weather application with live contextual API integration and location rendering.",
-    tech: ["React", "OpenWeather API"],
+
+    images: [skysense],
+    image: skysense,
+
+    description:
+      "Interactive weather dashboard providing real-time forecasts, dynamic weather animations and contextual backgrounds powered by live API integration.",
+
+    tech: [
+      "React",
+      "OpenWeather API",
+      "CSS",
+    ],
+
     github: "https://github.com/arnavanand2005/SkySense",
-    demo: "#",
+    demo: "https://sky-sense-eight.vercel.app",
+
+    year: "2025",
+    role: "Frontend Developer",
+    type: "Personal",
+    status: "LIVE",
+
     loc: "610 LINES",
-    status: "ARCHIVED",
     hash: "0x77X1C",
   },
+
   {
     title: "EDUSITY",
-    category: "EDTECH WEBSITE",
-    image: "/placeholder-project.png",
-    description: "Responsive higher-education university landing architecture.",
-    tech: ["React", "Tailwind"],
+    category: "EDTECH PLATFORM",
+
+    images: [edusity1, edusity2, edusity3, edusity4],
+    image: edusity1,
+
+    description:
+      "A modern university website designed with responsive layouts, interactive sections and a clean educational interface inspired by contemporary institutions.",
+
+    tech: [
+      "React",
+      "Tailwind",
+      "JavaScript",
+    ],
+
     github: "https://github.com/arnavanand2005/EduSity-",
-    demo: "#",
+    demo: "https://edu-sity-eight.vercel.app",
+
+    year: "2025",
+    role: "Frontend Developer",
+    type: "Personal",
+    status: "COMPLETED",
+
     loc: "1,100 LINES",
-    status: "ARCHIVED",
     hash: "0x22D9M",
   },
+
   {
     title: "MINEVERSE",
-    category: "GAME PLATFORM",
-    image: "/placeholder-project.png",
-    description: "Minecraft-inspired immersive vector web experience and user routing hubs.",
-    tech: ["React"],
+    category: "EVENT PLATFORM",
+
+    images: [mineverse],
+    image: mineverse,
+
+    description:
+      "A Minecraft-inspired digital event platform built for the SQAC technical team, combining immersive visuals with interactive web experiences.",
+
+    tech: [
+      "React",
+      "Tailwind",
+      "JavaScript",
+    ],
+
     github: "https://github.com/SQAC-Tech/Event-Mineverse",
-    demo: "#",
-    loc: "xxyy... LINES",
-    status: "ARCHIVED",
+    demo: "https://mineverse-sqac.vercel.app",
+
+    year: "2025",
+    role: "Frontend Developer",
+    type: "Organization",
+    status: "COMPLETED",
+
+    loc: "1,000+ LINES",
     hash: "0x44P6K",
   },
+
   {
     title: "RESEARCH.LOG",
     category: "CURRENTLY EXPLORING",
-    image: "/placeholder-project.png",
+
+    images: [],
+    image: null,
+
     description:
-      "Machine Learning, Deep Learning, Computer Vision, Intelligent Systems and advanced AI research logs.",
-    tech: ["Python", "TensorFlow", "PyTorch"],
-    github: "#",
+      "Currently exploring Machine Learning, Deep Learning, Computer Vision, Large Language Models, Generative AI and intelligent autonomous systems. More exciting research projects coming soon.",
+
+    tech: [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "OpenCV",
+      "LLMs",
+    ],
+
+    github: "https://github.com/arnavanand2005?tab=repositories",
     demo: "#",
-    loc: "ACTIVE DATA",
-    status: "COMPILING",
+
+    year: "NOW",
+    role: "Learning",
+    type: "Research",
+    status: "IN PROGRESS",
+
+    loc: "ACTIVE",
     hash: "0x99Z7Z",
   },
 ];
@@ -137,6 +270,10 @@ export default function Projects() {
   };
 
   const hasValidImage = selected.image && selected.image !== "/placeholder-project.png";
+  const galleryItems = projects.map((project) => ({
+    image: project.image,
+    text: project.title,
+  }));
 
   return (
     <section
@@ -177,13 +314,21 @@ export default function Projects() {
           </p>
         </div>
 
+        <div className="h-[340px] mb-20 relative">
+        <CircularGallery
+         items={galleryItems}
+          bend={2}
+          textColor="#ffffff"
+          borderRadius={0.08}
+          scrollEase={0.08}
+            onItemClick={(index) => {
+          setSelected(projects[index]);
+          setActiveImage(0);}}/> 
+          </div>
 
-        {/* ========================================== */}
-        {/* WORKSPACE LAYOUT CONTAINER */}
-        {/* ========================================== */}
+
         <div className="grid lg:grid-cols-[360px_1fr] gap-8 items-stretch">
 
-          {/* LEFT SECTION: HIGH-DENSITY DIRECTORY LIST */}
           <BorderGlow
             glowColor="190 100 70"
             glowRadius={40}
@@ -201,7 +346,6 @@ export default function Projects() {
                   <span className="text-[10px] text-zinc-600 font-mono tracking-tighter">DATA_POOL: {projects.length}</span>
                 </div>
 
-                {/* Cyberpunk Selection Buttons */}
                 <div className="space-y-2 max-h-[580px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-zinc-800">
                   {projects.map((project, index) => {
                     const isSelected = selected.title === project.title;
@@ -244,7 +388,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Sidebar Terminal Status Baseline */}
               <div className="mt-6 pt-4 border-t border-zinc-900 text-[9px] text-zinc-600 flex justify-between items-center">
                 <span className="flex items-center gap-1.5">
                   <span className="w-1 h-1 rounded-full bg-green-500 animate-ping" />
@@ -256,7 +399,6 @@ export default function Projects() {
           </BorderGlow>
 
 
-          {/* RIGHT SECTION: MAIN DISPLAY CONSOLE TERMINAL */}
           <BorderGlow
             glowColor="190 100 70"
             glowRadius={60}
@@ -265,7 +407,6 @@ export default function Projects() {
           >
             <div className="p-6 sm:p-10 bg-zinc-950/90 rounded-[20px] border border-zinc-900/80 relative overflow-hidden backdrop-blur-md flex flex-col justify-between h-full">
               
-              {/* Tactical Blueprint Grid Crosshairs */}
               <div className="absolute top-4 right-4 text-[9px] text-zinc-700 tracking-tighter hidden sm:block">
                 SYS_LOC // [X: 104.22 // Y: 490.11]
               </div>
@@ -288,7 +429,6 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Telemetry Status Grid Blocks */}
                   <div className="grid grid-cols-2 gap-4 border border-zinc-900 bg-black/60 p-3 rounded-xl text-xs min-w-[200px] relative">
                     <div className="absolute top-0 right-2 w-1 h-1 bg-red-500" />
                     <div>
@@ -302,20 +442,16 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Component Body Content Splitting Grid */}
                 <div className="grid xl:grid-cols-[1.25fr_0.75fr] gap-8 items-start">
                   
-                  {/* Left Column Component Layout: Media Streams / Interactive Handles */}
                   <div className="space-y-5">
                     <div className="h-[340px] sm:h-[400px] rounded-xl border border-zinc-800 bg-black flex flex-col items-center justify-center p-2 relative overflow-hidden group">
                       
-                      {/* Neon Tactical View Box Bracket Crosshairs */}
                       <div className="absolute top-4 left-4 w-3 h-3 border-t-2 border-l-2 border-cyan-400/40 group-hover:border-cyan-400 transition-colors" />
                       <div className="absolute top-4 right-4 w-3 h-3 border-t-2 border-r-2 border-cyan-400/40 group-hover:border-cyan-400 transition-colors" />
                       <div className="absolute bottom-4 left-4 w-3 h-3 border-b-2 border-l-2 border-cyan-400/40 group-hover:border-cyan-400 transition-colors" />
                       <div className="absolute bottom-4 right-4 w-3 h-3 border-b-2 border-r-2 border-cyan-400/40 group-hover:border-cyan-400 transition-colors" />
                       
-                      {/* Interactive Visual Scanning Laser Beam Line Overlay Animation */}
                       <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent top-0 animate-[bounce_4s_infinite_ease-in-out] pointer-events-none shadow-[0_0_10px_rgba(0,229,255,1)]" />
 
                       {hasValidImage ? (
