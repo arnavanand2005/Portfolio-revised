@@ -6,8 +6,8 @@ import cv from "../assets/cv.pdf";
 const CardNav = ({
   items,
   className = "",
-  ease = "power3.out",
-  baseColor = "#050505",
+  ease = "power4.out",
+  baseColor = "rgba(9, 9, 11, 0.7)", // Adjusted to glass-zinc for futuristic contrast
   menuColor = "#00E5FF",
   buttonBgColor = "#FF3B3B",
   buttonTextColor = "#FFFFFF",
@@ -65,15 +65,16 @@ const CardNav = ({
     });
 
     gsap.set(cardsRef.current, {
-      y: 50,
+      y: 30,
       opacity: 0,
+      skewX: -3,
     });
 
     const tl = gsap.timeline({ paused: true });
 
     tl.to(navEl, {
       height: calculateHeight,
-      duration: 0.4,
+      duration: 0.45,
       ease,
     });
 
@@ -82,11 +83,12 @@ const CardNav = ({
       {
         y: 0,
         opacity: 1,
+        skewX: 0,
         duration: 0.4,
         ease,
-        stagger: 0.08,
+        stagger: 0.06,
       },
-      "-=0.1"
+      "-=0.2"
     );
 
     return tl;
@@ -149,98 +151,140 @@ const CardNav = ({
 
   return (
     <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-225 z-99 top-6 ${className}`}
+      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[92%] max-w-225 z-99 top-6 select-none font-mono ${className}`}
     >
       <nav
         ref={navRef}
         className={`card-nav ${
           isExpanded ? "open" : ""
-        } block h-15 rounded-2xl relative overflow-hidden backdrop-blur-xl`}
+        } block h-15 rounded-xl relative overflow-hidden backdrop-blur-xl border transition-colors duration-300`}
         style={{
           backgroundColor: baseColor,
-          border: "1px solid rgba(0,229,255,0.2)",
-          boxShadow: "0 0 30px rgba(0,229,255,0.15), 0 0 60px rgba(255,59,59,0.08)",
+          borderColor: isExpanded ? "rgba(0, 229, 255, 0.4)" : "rgba(39, 39, 42, 0.6)",
+          boxShadow: isExpanded 
+            ? "0 0 35px rgba(0,229,255,0.15), inset 0 0 15px rgba(0,229,255,0.05)" 
+            : "0 10px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.05)",
         }}
       >
-        <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-cyan-400 to-transparent animate-pulse" />
+        {/* HUD Scanline & Laser Edge Effects */}
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_8px_#00E5FF] animate-pulse" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,229,255,0.03),transparent_60%)] pointer-events-none" />
 
-        <div className="absolute inset-x-0 top-0 h-15 flex items-center justify-between px-4 z-[2]">
+        {/* Micro Tech Details / Bracket Anchors */}
+        <div className="absolute top-1 left-1 text-[7px] text-zinc-600 tracking-tighter">SYS_MAPPED // 0x7F</div>
+        <div className="absolute bottom-1 right-1 text-[7px] text-zinc-600 tracking-tighter hidden md:block">LOC_INDEX_N0.32</div>
+
+        {/* Top Header Row Panel */}
+        <div className="absolute inset-x-0 top-0 h-15 flex items-center justify-between px-6 z-[2]">
+          
+          {/* Cyber Trigger Matrix Hamburger Toggle */}
           <div
             onClick={toggleMenu}
             role="button"
             tabIndex={0}
-            className="flex flex-col gap-1.5 cursor-pointer text-cyan-400 hover:text-red-400 transition-colors duration-300"
+            className="flex flex-col gap-1.5 cursor-pointer text-cyan-400 hover:text-red-400 group transition-colors duration-300 relative py-2 pr-4"
           >
             <div
-              className={`w-7.5 h-0.5 bg-current transition-all duration-300 ${
-                isHamburgerOpen
-                  ? "translate-y-1 rotate-45"
-                  : ""
+              className={`w-6 h-[2px] bg-current transition-all duration-300 shadow-[0_0_6px_currentColor] ${
+                isHamburgerOpen ? "translate-y-2 rotate-45" : ""
               }`}
             />
-
             <div
-              className={`w-7.5 h-[2px] bg-current transition-all duration-300 ${
-                isHamburgerOpen
-                  ? "-translate-y-1 -rotate-45"
-                  : ""
+              className={`w-4 h-[2px] bg-current transition-all duration-300 shadow-[0_0_6px_currentColor] ${
+                isHamburgerOpen ? "opacity-0 -translate-x-2" : ""
+              }`}
+            />
+            <div
+              className={`w-6 h-[2px] bg-current transition-all duration-300 shadow-[0_0_6px_currentColor] ${
+                isHamburgerOpen ? "-translate-y-2 -rotate-45" : ""
               }`}
             />
           </div>
 
-
+          {/* Holographic Logo Emplacement */}
           <div className="absolute left-1/2 -translate-x-1/2">
-          <h1 className="font-black text-xl tracking-[0.25em] drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]">
-            <span className="text-cyan-400">ARNAV</span>
-            <span className="text-red-500">.</span>
-            <span className="text-white">//DEV</span>
-          </h1>
+            <h1 className="font-black text-lg tracking-[0.35em] drop-shadow-[0_0_12px_rgba(0,229,255,0.3)] select-none uppercase">
+              <span className="text-cyan-400">ARNAV</span>
+              <span className="text-white">.</span>
+              <span className="text-red-500">//DEV</span>
+            </h1>
           </div>
 
-            <a
+          {/* Action Trigger Node (Download CV) */}
+          <a
             href={cv}
             download="Arnav_Anand_resume.pdf"
-            className="hidden md:flex px-5 h-10 items-center rounded-xl font-black tracking-[0.15em] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,59,59,0.4)]"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor,}}>
-               DOWNLOAD CV
-              </a>
+            className="hidden md:flex px-4 h-9 items-center rounded-lg font-black text-[11px] tracking-[0.2em] uppercase border relative overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+            style={{ 
+              backgroundColor: "rgba(255, 59, 59, 0.1)", 
+              borderColor: "rgba(255, 59, 59, 0.4)",
+              color: "#FFF",
+              boxShadow: "0 0 15px rgba(255, 59, 59, 0.15)"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = "0 0 25px rgba(255, 59, 59, 0.5)";
+              e.currentTarget.style.backgroundColor = buttonBgColor;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "0 0 15px rgba(255, 59, 59, 0.15)";
+              e.currentTarget.style.backgroundColor = "rgba(255, 59, 59, 0.1)";
+            }}
+          >
+            <span className="w-1 h-1 rounded-full bg-white mr-2 animate-ping" />
+            LOAD_RESUME.EXE
+          </a>
         </div>
 
-
+        {/* Tactical Sub-Matrix Expansion Deck */}
         <div
-          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-3 flex flex-col gap-3 ${
-            isExpanded
-              ? "visible pointer-events-auto"
-              : "invisible pointer-events-none"
+          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-3 flex flex-col gap-3 transition-all duration-300 ${
+            isExpanded ? "visible pointer-events-auto opacity-100" : "invisible pointer-events-none opacity-0"
           } md:flex-row`}
         >
           {(items || []).slice(0, 3).map((item, idx) => (
             <div
               key={idx}
               ref={setCardRef(idx)}
-              className="rounded-2xl p-5 flex flex-col gap-4 flex-1 border border-white/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:rotate-[0.5deg]  hover:scale-[1.02] hover:border-cyan-400/50
-               hover:shadow-[0_0_30px_rgba(0,229,255,0.25)]"
+              className="rounded-xl p-5 flex flex-col gap-4 flex-1 border bg-gradient-to-b from-zinc-950/90 to-black/95 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01]"
               style={{
-                backgroundColor: item.bgColor,
-                color: item.textColor,
+                borderColor: "rgba(39, 39, 42, 0.6)",
+                boxShadow: "inset 0 1px 2px rgba(255, 255, 255, 0.02)"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "rgba(0, 229, 255, 0.4)";
+                e.currentTarget.style.boxShadow = "0 0 25px rgba(0, 229, 255, 0.1), inset 0 0 10px rgba(0, 229, 255, 0.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(39, 39, 42, 0.6)";
+                e.currentTarget.style.boxShadow = "inset 0 1px 2px rgba(255, 255, 255, 0.02)";
               }}
             >
-              <h2 className="text-xl font-semibold">
-                {item.label}
-              </h2>
+              {/* Card Corner Tech Decorators */}
+              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-zinc-800 group-hover:border-cyan-400/60" />
+              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-zinc-800 group-hover:border-red-500/60" />
+              
+              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+                <h2 className="text-xs font-black tracking-[0.18em] uppercase text-white group-hover:text-cyan-400 transition-colors">
+                  // {item.label}
+                </h2>
+                <span className="text-[8px] text-zinc-600 font-bold tracking-widest">IDX_0{idx+1}</span>
+              </div>
 
-              <div className="flex flex-col gap-2">
+              {/* Data Links Vector Array */}
+              <div className="flex flex-col gap-1.5">
                 {item.links?.map((lnk, i) => (
                   <a
                     key={i}
                     href={lnk.href}
                     aria-label={lnk.ariaLabel}
-                    className=" group flex items-center justify-between gap-2 rounded-lg px-3 py-2 transition-all duration-300 hover:bg-black/20 hover:translate-x-1"
+                    className="group/item flex items-center justify-between gap-2 rounded-lg px-3 py-2 border border-transparent text-[11px] font-bold text-zinc-400 tracking-wide transition-all duration-200 hover:bg-zinc-900/40 hover:text-white hover:border-zinc-800 hover:translate-x-1"
                   >
-                   
-                    <span>{lnk.label}</span>
+                    <span className="flex items-center gap-2">
+                      <span className="w-1 h-1 bg-zinc-700 rounded-full group-hover/item:bg-red-400 group-hover/item:shadow-[0_0_6px_#FF3B3B] transition-all" />
+                      {lnk.label}
+                    </span>
 
-              <GoArrowUpRight className="transition-transform duration-300 group-hover:rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1"/>
+                    <GoArrowUpRight className="text-zinc-500 transition-all duration-300 group-hover/item:text-cyan-400 group-hover/item:rotate-45 group-hover/item:translate-x-0.5" />
                   </a>
                 ))}
               </div>

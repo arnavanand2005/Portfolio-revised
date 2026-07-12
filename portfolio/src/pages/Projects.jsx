@@ -1,258 +1,156 @@
-import { useState,useEffect } from "react";
+
+import { useState, useEffect, useMemo } from "react";
 import DecryptedText from "../components/DecryptedText";
 import BorderGlow from "../components/BorderGlow";
 import santos1 from "../assets/santos-1.png";
 import santos2 from "../assets/santos-2.png";
 import santos3 from "../assets/santos-3.png";
 import santos4 from "../assets/santos-4.png";
-import amcs1 from "../assets/amcs.png"
-import amcs2 from "../assets/amcs-2.png"
-import amcs3 from "../assets/amcs-3.png"
-import amcs4 from "../assets/amcs-4.png"
-import bruno1 from "../assets/bruno-1.png"
-import bruno2 from "../assets/bruno-2.png"
-import bruno3 from "../assets/bruno-3.png"
-import edusity1 from "../assets/edusity-1.png"
-import edusity2 from "../assets/edusity-2.png"
-import edusity3 from "../assets/edusity-3.png"
-import edusity4 from "../assets/edusity-4.png"
-import skysense from "../assets/skysense.png"
-import sqac from "../assets/sqac.png"
-import mineverse from "../assets/mineverse.png"
+import amcs1 from "../assets/amcs.png";
+import amcs2 from "../assets/amcs-2.png";
+import amcs3 from "../assets/amcs-3.png";
+import amcs4 from "../assets/amcs-4.png";
+import bruno1 from "../assets/bruno-1.png";
+import bruno2 from "../assets/bruno-2.png";
+import bruno3 from "../assets/bruno-3.png";
+import edusity1 from "../assets/edusity-1.png";
+import edusity2 from "../assets/edusity-2.png";
+import edusity3 from "../assets/edusity-3.png";
+import edusity4 from "../assets/edusity-4.png";
+import skysense from "../assets/skysense.png";
+import sqac from "../assets/sqac.png";
+import mineverse from "../assets/mineverse.png";
 import PlasmaWave from "../components/PlasmaWave";
-import CircularGallery from '../components/CircularGallery'
-
+import CircularGallery from '../components/CircularGallery';
 
 const projects = [
   {
     title: "LOS SANTOS ESTATES",
     category: "FULL STACK MERN",
     featured: true,
-
     images: [santos1, santos2, santos3, santos4],
     image: santos1,
-
-    description:
-      "A full-stack MERN real estate platform featuring secure authentication, property management, image uploads, advanced search filters, and a responsive user experience. Designed to simulate a modern property marketplace with production-ready architecture.",
-
-    tech: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Tailwind",
-      "Firebase",
-    ],
-
+    description: "A full-stack MERN real estate platform featuring secure authentication, property management, image uploads, advanced search filters, and a responsive user experience. Designed to simulate a modern property marketplace with production-ready architecture.",
+    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind", "Firebase"],
     github: "https://github.com/arnavanand2005/Mern-stack-estate",
     demo: "https://mern-stack-estate-b5hs.onrender.com",
-
     year: "2026",
     role: "Full Stack Developer",
     type: "Featured",
     status: "LIVE",
-
     loc: "1,240 LINES",
     hash: "0x8F3A2",
   },
-
   {
     title: "AMCS",
     category: "AI RESEARCH",
     featured: true,
-
     images: [amcs1, amcs2, amcs3, amcs4],
     image: amcs1,
-
-    description:
-      "Adaptive Multi-Criteria Search (AMCS) is an AI-powered path planning framework designed for autonomous delivery systems. It evaluates multiple constraints including distance, energy, traffic, curvature and turn penalties to generate optimal routes.",
-
-    tech: [
-      "Python",
-      "Streamlit",
-      "AI",
-      "Optimization",
-      "Graph Search",
-    ],
-
+    description: "Adaptive Multi-Criteria Search (AMCS) is an AI-powered path planning framework designed for autonomous delivery systems. It evaluates multiple constraints including distance, energy, traffic, curvature and turn penalties to generate optimal routes.",
+    tech: ["Python", "Streamlit", "AI", "Optimization", "Graph Search"],
     github: "https://github.com/Patric420/minor",
     demo: "https://patric420-minor-app-ladj3e.streamlit.app",
-
     year: "2026",
     role: "AI Researcher",
     type: "Featured",
     status: "DEPLOYED",
-
     loc: "3,820 LINES",
     hash: "0x3C9B1",
   },
-
   {
     title: "SQAC WEBSITE",
     category: "WEB PLATFORM",
-
     images: [sqac],
     image: sqac,
-
-    description:
-      "Official website developed for the SRM Quality Assurance Club, providing an engaging digital presence with responsive layouts, modern UI components and scalable frontend architecture.",
-
-    tech: [
-      "React",
-      "Tailwind",
-      "JavaScript",
-    ],
-
+    description: "Official website developed for the SRM Quality Assurance Club, providing an engaging digital presence with responsive layouts, modern UI components and scalable frontend architecture.",
+    tech: ["React", "Tailwind", "JavaScript"],
     github: "https://github.com/SQAC-Tech/sqac-website",
     demo: "https://www.sqac.space",
-
     year: "2025",
     role: "Frontend Developer",
     type: "Organization",
     status: "LIVE",
-
     loc: "840 LINES",
     hash: "0x91A4E",
   },
-
   {
     title: "BRUNO'S PIZZERIA",
     category: "RESTAURANT WEBSITE",
-
     images: [bruno1, bruno2, bruno3],
     image: bruno1,
-
-    description:
-      "A modern restaurant landing page featuring elegant animations, responsive layouts and an immersive dining experience built entirely with React.",
-
-    tech: [
-      "React",
-      "CSS",
-      "JavaScript",
-    ],
-
+    description: "A modern restaurant landing page featuring elegant animations, responsive layouts and an immersive dining experience built entirely with React.",
+    tech: ["React", "CSS", "JavaScript"],
     github: "https://github.com/arnavanand2005/Brunos-PIZZERIA",
     demo: "https://brunos-pizzeria.vercel.app",
-
     year: "2025",
     role: "Frontend Developer",
     type: "Personal",
     status: "COMPLETED",
-
     loc: "450 LINES",
     hash: "0x55B2F",
   },
-
   {
     title: "SKYSENSE",
     category: "WEATHER APPLICATION",
-
     images: [skysense],
     image: skysense,
-
-    description:
-      "Interactive weather dashboard providing real-time forecasts, dynamic weather animations and contextual backgrounds powered by live API integration.",
-
-    tech: [
-      "React",
-      "OpenWeather API",
-      "CSS",
-    ],
-
+    description: "Interactive weather dashboard providing real-time forecasts, dynamic weather animations and contextual backgrounds powered by live API integration.",
+    tech: ["React", "OpenWeather API", "CSS"],
     github: "https://github.com/arnavanand2005/SkySense",
     demo: "https://sky-sense-eight.vercel.app",
-
     year: "2025",
     role: "Frontend Developer",
     type: "Personal",
     status: "LIVE",
-
     loc: "610 LINES",
     hash: "0x77X1C",
   },
-
   {
     title: "EDUSITY",
     category: "EDTECH PLATFORM",
-
     images: [edusity1, edusity2, edusity3, edusity4],
     image: edusity1,
-
-    description:
-      "A modern university website designed with responsive layouts, interactive sections and a clean educational interface inspired by contemporary institutions.",
-
-    tech: [
-      "React",
-      "Tailwind",
-      "JavaScript",
-    ],
-
+    description: "A modern university website designed with responsive layouts, interactive sections and a clean educational interface inspired by contemporary institutions.",
+    tech: ["React", "Tailwind", "JavaScript"],
     github: "https://github.com/arnavanand2005/EduSity-",
     demo: "https://edu-sity-eight.vercel.app",
-
     year: "2025",
     role: "Frontend Developer",
     type: "Personal",
     status: "COMPLETED",
-
     loc: "1,100 LINES",
     hash: "0x22D9M",
   },
-
   {
     title: "MINEVERSE",
     category: "EVENT PLATFORM",
-
     images: [mineverse],
     image: mineverse,
-
-    description:
-      "A Minecraft-inspired digital event platform built for the SQAC technical team, combining immersive visuals with interactive web experiences.",
-
-    tech: [
-      "React",
-      "Tailwind",
-      "JavaScript",
-    ],
-
+    description: "A Minecraft-inspired digital event platform built for the SQAC technical team, combining immersive visuals with interactive web experiences.",
+    tech: ["React", "Tailwind", "JavaScript"],
     github: "https://github.com/SQAC-Tech/Event-Mineverse",
     demo: "https://mineverse-sqac.vercel.app",
-
     year: "2025",
     role: "Frontend Developer",
     type: "Organization",
     status: "COMPLETED",
-
     loc: "1,000+ LINES",
     hash: "0x44P6K",
   },
-
   {
     title: "RESEARCH.LOG",
     category: "CURRENTLY EXPLORING",
-
     images: [],
     image: null,
-
-    description:
-      "Currently exploring Machine Learning, Deep Learning, Computer Vision, Large Language Models, Generative AI and intelligent autonomous systems. More exciting research projects coming soon.",
-
-    tech: [
-      "Python",
-      "TensorFlow",
-      "PyTorch",
-      "OpenCV",
-      "LLMs",
-    ],
-
+    description: "Currently exploring Machine Learning, Deep Learning, Computer Vision, Large Language Models, Generative AI and intelligent autonomous systems. More exciting research projects coming soon.",
+    tech: ["Python", "TensorFlow", "PyTorch", "OpenCV", "LLMs"],
     github: "https://github.com/arnavanand2005?tab=repositories",
     demo: "#",
-
     year: "NOW",
     role: "Learning",
     type: "Research",
     status: "IN PROGRESS",
-
     loc: "ACTIVE",
     hash: "0x99Z7Z",
   },
@@ -270,10 +168,14 @@ export default function Projects() {
   };
 
   const hasValidImage = selected.image && selected.image !== "/placeholder-project.png";
-  const galleryItems = projects.map((project) => ({
-    image: project.image,
-    text: project.title,
-  }));
+
+  // FIX: Memoize array items so references don't break during state flips
+  const galleryItems = useMemo(() => {
+    return projects.map((project) => ({
+      image: project.image,
+      text: project.title,
+    }));
+  }, []);
 
   return (
     <section
@@ -315,17 +217,20 @@ export default function Projects() {
         </div>
 
         <div className="h-[340px] mb-20 relative">
-        <CircularGallery
-         items={galleryItems}
-          bend={2}
-          textColor="#ffffff"
-          borderRadius={0.08}
-          scrollEase={0.08}
+          <CircularGallery
+            items={galleryItems}
+            bend={2}
+            textColor="#ffffff"
+            borderRadius={0.08}
+            scrollEase={0.08}
             onItemClick={(index) => {
-          setSelected(projects[index]);
-          setActiveImage(0);}}/> 
-          </div>
-
+              if (projects[index]) {
+                setSelected(projects[index]);
+                setActiveImage(0);
+              }
+            }}
+          /> 
+        </div>
 
         <div className="grid lg:grid-cols-[360px_1fr] gap-8 items-stretch">
 
@@ -363,7 +268,6 @@ export default function Projects() {
                             : "bg-black/40 border-zinc-900/60 hover:border-zinc-800 hover:bg-zinc-900/20"
                         }`}
                       >
-                        {/* Selected Indicator Bar */}
                         {isSelected && (
                           <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-400 to-red-500 shadow-[0_0_10px_rgba(0,229,255,1)]" />
                         )}
@@ -398,7 +302,6 @@ export default function Projects() {
             </div>
           </BorderGlow>
 
-
           <BorderGlow
             glowColor="190 100 70"
             glowRadius={60}
@@ -415,7 +318,6 @@ export default function Projects() {
               <div className="absolute bottom-3 right-3 w-1.5 h-1.5 border-b border-r border-zinc-800" />
 
               <div>
-                {/* Console Panel Header Layout Block */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-zinc-900 pb-6 mb-8 gap-4">
                   <div className="flex items-start gap-4">
                     <span className="w-1.5 h-12 rounded-sm bg-gradient-to-b from-cyan-400 via-white to-red-500 shadow-[0_0_15px_rgba(0,229,255,0.4)]" />
@@ -563,3 +465,4 @@ export default function Projects() {
     </section>
   );
 }
+
