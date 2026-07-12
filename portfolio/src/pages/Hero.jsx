@@ -6,7 +6,6 @@ function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
 
-      {/* Plasma Background */}
       <div className="absolute inset-0">
         <PlasmaWave
           colors={["#00E5FF", "#FF2E63"]}
@@ -20,28 +19,22 @@ function Hero() {
         />
       </div>
 
-      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/60" />
 
-      {/* Grid Overlay */}
       <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      {/* Glow */}
       <div className="absolute left-1/4 top-1/3 h-96 w-96 rounded-full bg-cyan-500/10 blur-[140px]" />
       <div className="absolute right-1/4 bottom-1/3 h-96 w-96 rounded-full bg-red-500/10 blur-[140px]" />
 
-      {/* Main Card */}
       <div className="relative z-10 w-full max-w-5xl px-6">
 
         <div className="relative overflow-hidden rounded-[28px] border border-cyan-500/20 bg-black/40 backdrop-blur-xl shadow-[0_0_70px_rgba(0,229,255,0.08)]">
 
-          {/* Corner Borders */}
           <div className="absolute top-4 left-4 w-5 h-5 border-l-2 border-t-2 border-cyan-400" />
           <div className="absolute top-4 right-4 w-5 h-5 border-r-2 border-t-2 border-red-400" />
           <div className="absolute bottom-4 left-4 w-5 h-5 border-l-2 border-b-2 border-cyan-400" />
           <div className="absolute bottom-4 right-4 w-5 h-5 border-r-2 border-b-2 border-red-400" />
 
-          {/* Top Bar */}
           <div className="flex items-center justify-between border-b border-zinc-800 px-8 py-5">
 
             <div className="flex items-center gap-3">
@@ -59,7 +52,6 @@ function Hero() {
 
           </div>
 
-          {/* Content */}
 
           <div className="px-10 py-16">
 

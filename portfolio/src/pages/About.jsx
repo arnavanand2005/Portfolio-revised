@@ -23,12 +23,10 @@ export default function About() {
       id="about" 
       className="min-h-screen py-24 px-4 sm:px-8 lg:px-12 relative overflow-hidden font-mono select-none z-10 bg-[#030303] text-zinc-100"
     >
-      {/* Structural Tech Grid Lines Accent (Matches Hyperspeed alignment) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f0f15_1px,transparent_1px),linear-gradient(to_bottom,#0f0f15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative">
         
-        {/* SECTION HEADER BLOCK */}
         <div className="text-center mb-16 relative">
           <div className="inline-block">
             <DecryptedText
@@ -73,7 +71,6 @@ export default function About() {
                 </p>
               </div>
 
-              {/* Core Terminal Stats Registry (HUD Panel Look) */}
               <div className="border border-zinc-800/80 bg-black/80 p-5 rounded-xl space-y-4 font-mono text-xs divide-y divide-zinc-800/60 shadow-inner">
                 <div>
                   <span className="text-zinc-500 block text-[9px] tracking-wider uppercase font-bold mb-0.5">OPERATOR</span>
@@ -106,7 +103,6 @@ export default function About() {
             <span className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-zinc-800" />
           </div>
 
-          {/* Icon Grid Area */}
           <div className="relative z-20">
             <GlassIcons items={technicalSkills} />
           </div>
