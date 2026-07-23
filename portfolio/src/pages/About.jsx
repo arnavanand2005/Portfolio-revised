@@ -7,7 +7,6 @@ import Hyperspeed from "../components/HyperSpeed";
 import { FaReact, FaHtml5, FaNodeJs, FaPython, FaCss3Alt } from 'react-icons/fa';
 import { SiTailwindcss, SiMongodb, SiJavascript, SiFirebase, SiExpress, SiMysql } from 'react-icons/si';
 
-// Memoizing Hyperspeed prevents re-render triggers from killing/restarting the WebGL loop
 const PermanentHyperspeed = memo(() => {
   return (
     <div className="absolute inset-0 z-0 opacity-80 pointer-events-none w-full h-full overflow-hidden">

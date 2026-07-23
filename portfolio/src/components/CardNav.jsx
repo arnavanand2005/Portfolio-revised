@@ -7,10 +7,8 @@ const CardNav = ({
   items,
   className = "",
   ease = "power4.out",
-  baseColor = "rgba(9, 9, 11, 0.85)", // Elevated opacity for crisp glassmorphism
-  menuColor = "#00E5FF",
+  baseColor = "rgba(9, 9, 11, 0.85)", // Glassmorphism backdrop
   buttonBgColor = "#FF3B3B",
-  buttonTextColor = "#FFFFFF",
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -145,6 +143,24 @@ const CardNav = ({
     }
   };
 
+  const handleNavClick = (e, href) => {
+    // If linking internally via anchor tags (e.g. #contact)
+    if (href && href.startsWith("#")) {
+      e.preventDefault();
+      const targetElement = document.querySelector(href);
+      
+      // Close menu first
+      if (isExpanded) {
+        toggleMenu();
+      }
+
+      // Smooth scroll target into view
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   const setCardRef = (i) => (el) => {
     if (el) cardsRef.current[i] = el;
   };
@@ -186,7 +202,7 @@ const CardNav = ({
           >
             <div
               className={`w-6 h-[2px] bg-current transition-all duration-300 shadow-[0_0_6px_currentColor] ${
-                isHamburgerOpen ? "translate-y-2 rotate-45" : ""
+                isHamburgerOpen ? "translate-y-2 rotate-45 text-red-500" : ""
               }`}
             />
             <div
@@ -196,15 +212,15 @@ const CardNav = ({
             />
             <div
               className={`w-6 h-[2px] bg-current transition-all duration-300 shadow-[0_0_6px_currentColor] ${
-                isHamburgerOpen ? "-translate-y-2 -rotate-45" : ""
+                isHamburgerOpen ? "-translate-y-2 -rotate-45 text-red-500" : ""
               }`}
             />
           </div>
 
           {/* Holographic Logo Emplacement */}
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="absolute left-1/2 -translate-x-1/2 cursor-pointer" onClick={(e) => handleNavClick(e, "#hero")}>
             <h1 className="font-black text-lg tracking-[0.35em] drop-shadow-[0_0_12px_rgba(0,229,255,0.3)] select-none uppercase">
-              <span className="text-cyan-400">ARNAV</span>
+              <span className="text-cyan-400 hover:text-white transition-colors">ARNAV</span>
               <span className="text-white">.</span>
               <span className="text-red-500">//DEV</span>
             </h1>
@@ -230,7 +246,7 @@ const CardNav = ({
               e.currentTarget.style.backgroundColor = "rgba(255, 59, 59, 0.1)";
             }}
           >
-            <span className="w-1 h-1 rounded-full bg-white mr-2 animate-ping" />
+            <span className="w-1.5 h-1.5 rounded-full bg-white mr-2 animate-ping" />
             LOAD_RESUME.EXE
           </a>
         </div>
@@ -245,29 +261,21 @@ const CardNav = ({
             <div
               key={idx}
               ref={setCardRef(idx)}
-              className="rounded-xl p-5 flex flex-col gap-4 flex-1 border bg-gradient-to-b from-zinc-950/90 to-black/95 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01]"
+              className="rounded-xl p-5 flex flex-col gap-4 flex-1 border bg-gradient-to-b from-zinc-950/90 to-black/95 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(0,229,255,0.12),inset_0_0_10px_rgba(0,229,255,0.05)]"
               style={{
                 borderColor: "rgba(39, 39, 42, 0.6)",
                 boxShadow: "inset 0 1px 2px rgba(255, 255, 255, 0.02)"
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(0, 229, 255, 0.4)";
-                e.currentTarget.style.boxShadow = "0 0 25px rgba(0, 229, 255, 0.1), inset 0 0 10px rgba(0, 229, 255, 0.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(39, 39, 42, 0.6)";
-                e.currentTarget.style.boxShadow = "inset 0 1px 2px rgba(255, 255, 255, 0.02)";
-              }}
             >
               {/* Card Corner Tech Decorators */}
-              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-zinc-800 group-hover:border-cyan-400/60" />
-              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-zinc-800 group-hover:border-red-500/60" />
+              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-zinc-800 group-hover:border-cyan-400 transition-colors" />
+              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-zinc-800 group-hover:border-red-500 transition-colors" />
               
               <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
                 <h2 className="text-xs font-black tracking-[0.18em] uppercase text-white group-hover:text-cyan-400 transition-colors">
                   // {item.label}
                 </h2>
-                <span className="text-[8px] text-zinc-600 font-bold tracking-widest">IDX_0{idx+1}</span>
+                <span className="text-[8px] text-zinc-600 font-bold tracking-widest group-hover:text-red-500 transition-colors">IDX_0{idx+1}</span>
               </div>
 
               {/* Data Links Vector Array */}
@@ -277,10 +285,11 @@ const CardNav = ({
                     key={i}
                     href={lnk.href}
                     aria-label={lnk.ariaLabel}
-                    className="group/item flex items-center justify-between gap-2 rounded-lg px-3 py-2 border border-transparent text-[11px] font-bold text-zinc-400 tracking-wide transition-all duration-200 hover:bg-zinc-900/40 hover:text-white hover:border-zinc-800 hover:translate-x-1"
+                    onClick={(e) => handleNavClick(e, lnk.href)}
+                    className="group/item flex items-center justify-between gap-2 rounded-lg px-3 py-2 border border-transparent text-[11px] font-bold text-zinc-400 tracking-wide transition-all duration-200 hover:bg-zinc-900/60 hover:text-white hover:border-zinc-800 hover:translate-x-1 hover:shadow-[0_0_15px_rgba(0,229,255,0.05)]"
                   >
                     <span className="flex items-center gap-2">
-                      <span className="w-1 h-1 bg-zinc-700 rounded-full group-hover/item:bg-red-400 group-hover/item:shadow-[0_0_6px_#FF3B3B] transition-all" />
+                      <span className="w-1.5 h-1.5 bg-zinc-700 rounded-full group-hover/item:bg-cyan-400 group-hover/item:shadow-[0_0_8px_#00E5FF] transition-all" />
                       {lnk.label}
                     </span>
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GlitchText from "../components/GlitchText";
 import BorderGlow from "../components/BorderGlow";
+import DotField from "../components/DotField";
 import { FaGithub, FaLinkedin, FaEnvelope, FaTerminal, FaShieldAlt, FaCircleNotch } from "react-icons/fa";
 
 export default function Contact() {
@@ -26,22 +27,41 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="bg-black min-h-screen py-24 px-4 sm:px-8 lg:px-12 flex items-center justify-center relative overflow-hidden font-sans select-none"
+      className="bg-black min-h-screen py-24 px-4 sm:px-8 lg:px-12 flex items-center justify-center relative overflow-hidden font-sans select-none z-10"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#000000_90%)] pointer-events-none" />
-      
-      <div className="absolute top-10 left-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-10 right-1/4 w-[600px] h-[600px] bg-red-500/5 rounded-full blur-[160px] pointer-events-none animate-pulse" />
+      {/* ========================================== */}
+      {/* REACT BITS INTERACTIVE DOTFIELD BACKGROUND */}
+      {/* ========================================== */}
+      <div className="absolute inset-0 z-0 opacity-70 pointer-events-auto">
+        <DotField
+          dotRadius={1.5}
+          dotSpacing={16}
+          bulgeStrength={80}
+          glowRadius={180}
+          sparkle={true}
+          waveAmplitude={0.5}
+          gradientFrom="#00E5FF"
+          gradientTo="#FF003C"
+          glowColor="rgba(0, 229, 255, 0.25)"
+        />
+      </div>
 
-      <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-zinc-800 pointer-events-none" />
-      <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-zinc-800 pointer-events-none" />
-      <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-zinc-800 pointer-events-none" />
-      <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-zinc-800 pointer-events-none" />
+      {/* BACKGROUND OVERLAYS & VIGNETTE */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#000000_90%)] pointer-events-none z-[2]" />
+      
+      <div className="absolute top-10 left-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none animate-pulse z-[2]" />
+      <div className="absolute bottom-10 right-1/4 w-[600px] h-[600px] bg-red-500/5 rounded-full blur-[160px] pointer-events-none animate-pulse z-[2]" />
+
+      {/* HUD CORNER BRACKETS */}
+      <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-zinc-800 pointer-events-none z-[3]" />
+      <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-zinc-800 pointer-events-none z-[3]" />
+      <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-zinc-800 pointer-events-none z-[3]" />
+      <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-zinc-800 pointer-events-none z-[3]" />
 
       <div className="w-full max-w-7xl mx-auto relative z-10 flex flex-col items-center">
 
-       
+        {/* HEADER SECTION */}
         <div className="text-center mb-16 relative w-full max-w-4xl">
           <div className="absolute top-0 left-0 text-[10px] font-mono text-zinc-600 tracking-widest hidden md:block">
             SYS.LOC // TERMINAL_CONNECT
@@ -70,7 +90,6 @@ export default function Contact() {
           </p>
         </div>
 
-
         {/* ========================================== */}
         {/* MAIN MASTER TWO-COLUMN GRID SYSTEM */}
         {/* ========================================== */}
@@ -87,7 +106,7 @@ export default function Contact() {
             borderRadius={24}
             colors={["#00E5FF", "#FFFFFF", "#FF003C"]}
           >
-            <div className="p-6 sm:p-10 md:p-12 h-full bg-black/90 rounded-[23px] flex flex-col justify-between border border-zinc-900 relative overflow-hidden">
+            <div className="p-6 sm:p-10 md:p-12 h-full bg-black/85 backdrop-blur-md rounded-[23px] flex flex-col justify-between border border-zinc-900 relative overflow-hidden">
               {/* Matrix Sub-Grid Lines Layer */}
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-500/20 via-transparent to-red-500/20" />
               
@@ -172,6 +191,7 @@ export default function Contact() {
                     />
                   </div>
 
+                  {/* Row 3: Message Input */}
                   <div className="relative">
                     <span className={`absolute left-4 top-5 font-mono text-xs transition-colors duration-300 ${isFocused === "message" ? "text-cyan-400" : "text-zinc-600"}`}>
                       [04]
@@ -240,7 +260,6 @@ export default function Contact() {
             </div>
           </BorderGlow>
 
-
           {/* ------------------------------------------ */}
           {/* RIGHT METRICS CONTROLLER (SOCIALS & HUD)   */}
           {/* ------------------------------------------ */}
@@ -252,7 +271,7 @@ export default function Contact() {
             borderRadius={24}
             colors={["#FF003C", "#FFFFFF", "#00E5FF"]}
           >
-            <div className="p-6 sm:p-10 md:p-12 flex flex-col justify-between gap-10 h-full bg-black/90 rounded-[23px] border border-zinc-900 relative overflow-hidden">
+            <div className="p-6 sm:p-10 md:p-12 flex flex-col justify-between gap-10 h-full bg-black/85 backdrop-blur-md rounded-[23px] border border-zinc-900 relative overflow-hidden">
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-500/20 via-transparent to-cyan-500/20" />
               
               <div className="space-y-6">
@@ -271,7 +290,7 @@ export default function Contact() {
                   >
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-zinc-900 rounded-lg border border-zinc-800 text-zinc-500 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-colors">
-                      <FaGithub className="text-2xl cyber-icon text-cyan-400 group-hover:shadow-[0_0_35px_rgba(0,229,255,0.35)]" />
+                        <FaGithub className="text-2xl cyber-icon text-cyan-400 group-hover:shadow-[0_0_35px_rgba(0,229,255,0.35)]" />
                       </div>
                       <div>
                         <p className="text-xs font-bold font-mono text-zinc-400 group-hover:text-white transition-colors">NET_NODE // GITHUB</p>
@@ -289,7 +308,7 @@ export default function Contact() {
                   >
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-zinc-900 rounded-lg border border-zinc-800 text-zinc-500 group-hover:text-red-400 group-hover:border-red-500/30 transition-colors">
-                      <FaLinkedin className="text-2xl cyber-icon text-red-400 group-hover:shadow-[0_0_35px_rgba(0,229,255,0.35)]" />
+                        <FaLinkedin className="text-2xl cyber-icon text-red-400 group-hover:shadow-[0_0_35px_rgba(0,229,255,0.35)]" />
                       </div>
                       <div>
                         <p className="text-xs font-bold font-mono text-zinc-400 group-hover:text-white transition-colors">NET_NODE // LINKEDIN</p>
@@ -305,7 +324,7 @@ export default function Contact() {
                   >
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-zinc-900 rounded-lg border border-zinc-800 text-zinc-500 group-hover:text-white group-hover:border-zinc-700 transition-colors">
-                      <FaEnvelope className="text-2xl cyber-icon text-white group-hover:shadow-[0_0_35px_rgba(0,229,255,0.25)]" />
+                        <FaEnvelope className="text-2xl cyber-icon text-white group-hover:shadow-[0_0_35px_rgba(0,229,255,0.25)]" />
                       </div>
                       <div>
                         <p className="text-xs font-bold font-mono text-zinc-400 group-hover:text-white transition-colors">DIRECT_UPLINK // MAIL</p>
