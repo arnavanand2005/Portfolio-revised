@@ -12,14 +12,15 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <>
+    <div className="bg-[#030303] text-white min-h-screen w-full overflow-x-hidden selection:bg-cyan-500 selection:text-black">
       {loading ? (
         <IntroLoad onComplete={() => setLoading(false)} />
       ) : (
         <>
+          {/* Navbar sits fixed on top of all sections */}
           <Navbar />
 
-          <main>
+          <main className="relative w-full">
             <Hero />
             <About />
             <Projects />
@@ -27,7 +28,7 @@ function App() {
           </main>
         </>
       )}
-    </>
+    </div>
   );
 }
 

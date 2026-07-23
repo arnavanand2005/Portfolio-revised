@@ -63,6 +63,7 @@ export default function Navbar() {
       buttonBgColor="#FF3B3B"
       buttonTextColor="#FFFFFF"
       ease="power3.out"
+      className="top-layer-nav"
     />
   );
 }

@@ -7,7 +7,7 @@ const CardNav = ({
   items,
   className = "",
   ease = "power4.out",
-  baseColor = "rgba(9, 9, 11, 0.7)", // Adjusted to glass-zinc for futuristic contrast
+  baseColor = "rgba(9, 9, 11, 0.85)", // Elevated opacity for crisp glassmorphism
   menuColor = "#00E5FF",
   buttonBgColor = "#FF3B3B",
   buttonTextColor = "#FFFFFF",
@@ -151,19 +151,19 @@ const CardNav = ({
 
   return (
     <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[92%] max-w-225 z-99 top-6 select-none font-mono ${className}`}
+      className={`card-nav-container fixed left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-[9999] top-5 select-none font-mono ${className}`}
     >
       <nav
         ref={navRef}
         className={`card-nav ${
           isExpanded ? "open" : ""
-        } block h-15 rounded-xl relative overflow-hidden backdrop-blur-xl border transition-colors duration-300`}
+        } block h-[60px] rounded-xl relative overflow-hidden backdrop-blur-2xl border transition-colors duration-300`}
         style={{
           backgroundColor: baseColor,
           borderColor: isExpanded ? "rgba(0, 229, 255, 0.4)" : "rgba(39, 39, 42, 0.6)",
           boxShadow: isExpanded 
             ? "0 0 35px rgba(0,229,255,0.15), inset 0 0 15px rgba(0,229,255,0.05)" 
-            : "0 10px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.05)",
+            : "0 10px 30px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05)",
         }}
       >
         {/* HUD Scanline & Laser Edge Effects */}
@@ -175,7 +175,7 @@ const CardNav = ({
         <div className="absolute bottom-1 right-1 text-[7px] text-zinc-600 tracking-tighter hidden md:block">LOC_INDEX_N0.32</div>
 
         {/* Top Header Row Panel */}
-        <div className="absolute inset-x-0 top-0 h-15 flex items-center justify-between px-6 z-[2]">
+        <div className="absolute inset-x-0 top-0 h-[60px] flex items-center justify-between px-6 z-[2]">
           
           {/* Cyber Trigger Matrix Hamburger Toggle */}
           <div
