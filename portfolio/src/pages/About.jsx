@@ -230,27 +230,41 @@ export default function About() {
 
               {/* TARGET SCANNING PROFILE INTERFACE */}
               <div 
-                className="relative group mx-auto w-full max-w-[290px] cursor-crosshair"
+                className="relative group mx-auto w-full max-w-[290px] cursor-pointer"
                 onMouseEnter={() => setIsLocked(true)}
                 onMouseLeave={() => setIsLocked(false)}
+                onClick={() => setIsLocked((prev) => !prev)}
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#FF315A] via-[#F5F5F5] to-[#00E5FF] rounded-2xl blur-md opacity-30 group-hover:opacity-90 transition duration-500" />
+                {/* Glow Border Overlay driven by state & hover */}
+                <div 
+                  className={`absolute -inset-1 bg-gradient-to-r from-[#FF315A] via-[#F5F5F5] to-[#00E5FF] rounded-2xl blur-md transition duration-500 ${
+                    isLocked ? "opacity-90 scale-[1.02]" : "opacity-30 group-hover:opacity-90"
+                  }`} 
+                />
                 
                 <div className="relative rounded-2xl bg-[#09090B] border border-[#00E5FF]/40 p-4 space-y-4 backdrop-blur-2xl">
                   
-                  <div className="relative aspect-square w-full rounded-xl overflow-hidden border border-[#8B8B8B]/30 group-hover:border-[#00E5FF] transition-colors duration-500 bg-[#030305]">
+                  <div className={`relative aspect-square w-full rounded-xl overflow-hidden border transition-colors duration-500 bg-[#030305] ${
+                    isLocked ? "border-[#00E5FF]" : "border-[#8B8B8B]/30 group-hover:border-[#00E5FF]"
+                  }`}>
                     
                     <img 
                       src={profileImg} 
                       alt="Arnav Anand" 
-                      className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                      className={`w-full h-full object-cover transition-all duration-700 ease-out ${
+                        isLocked ? "grayscale-0 scale-105" : "grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105"
+                      }`}
                     />
 
                     {/* Scanning Laser */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00E5FF]/40 to-transparent w-full h-[25%] -translate-y-full group-hover:animate-[scan_2.5s_ease-in-out_infinite] pointer-events-none" />
+                    <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-[#00E5FF]/40 to-transparent w-full h-[25%] -translate-y-full pointer-events-none ${
+                      isLocked ? "animate-[scan_2.5s_ease-in-out_infinite]" : "group-hover:animate-[scan_2.5s_ease-in-out_infinite]"
+                    }`} />
 
-                    {/* Radar Target overlay on Hover */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    {/* Radar Target Overlay */}
+                    <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none ${
+                      isLocked ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                    }`}>
                       <div className="w-36 h-36 border border-[#00E5FF]/60 rounded-full animate-spin [animation-duration:9s] flex items-center justify-center relative">
                         <div className="w-28 h-28 border border-dashed border-[#FF315A]/80 rounded-full animate-spin [animation-duration:4s] [animation-direction:reverse]" />
                         {/* Crosshair lines */}
@@ -270,7 +284,7 @@ export default function About() {
                     <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-[#00E5FF]" />
                   </div>
 
-                  {/* Dynamic Hover HUD Information */}
+                  {/* Dynamic Hover / Tap HUD Information */}
                   <div className="space-y-1.5 pt-1 text-[9px] font-mono">
                     <div className="flex items-center justify-between text-[#8B8B8B]">
                       <span>TARGET VERIFIED</span>
@@ -329,26 +343,26 @@ export default function About() {
                 </p>
               </div>
                          
-<div className="flex flex-wrap sm:flex-nowrap items-center gap-4 w-full md:w-auto">
-  <a
-    href="https://drive.google.com/file/d/1X8fiJtYUjHT5rsIBqn5n9nIhU-PwFymA/view?usp=sharing"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-5 py-3 bg-[#030305] border border-[#00E5FF]/40 text-[#00E5FF] rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:border-[#00E5FF] hover:bg-[#00E5FF]/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:-translate-y-0.5"
-  >
-    <FaExternalLinkAlt className="text-xs" />
-    <span>PREVIEW</span>
-  </a>
+              <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 w-full md:w-auto">
+                <a
+                  href="https://drive.google.com/file/d/1X8fiJtYUjHT5rsIBqn5n9nIhU-PwFymA/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-5 py-3 bg-[#030305] border border-[#00E5FF]/40 text-[#00E5FF] rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:border-[#00E5FF] hover:bg-[#00E5FF]/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:-translate-y-0.5"
+                >
+                  <FaExternalLinkAlt className="text-xs" />
+                  <span>PREVIEW</span>
+                </a>
 
-  <a
-    href="https://drive.google.com/uc?export=download&id=1X8fiJtYUjHT5rsIBqn5n9nIhU-PwFymA"
-    download="Arnav_Anand_Resume.pdf"
-    className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-6 py-3 bg-[#FF315A] text-[#F5F5F5] rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:bg-[#FF315A]/90 hover:shadow-[0_0_25px_rgba(255,49,90,0.6)] hover:-translate-y-0.5"
-  >
-    <FaFileDownload className="text-sm animate-bounce" />
-    <span>DOWNLOAD PDF</span>
-  </a>
-</div>
+                <a
+                  href="https://drive.google.com/uc?export=download&id=1X8fiJtYUjHT5rsIBqn5n9nIhU-PwFymA"
+                  download="Arnav_Anand_Resume.pdf"
+                  className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-6 py-3 bg-[#FF315A] text-[#F5F5F5] rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:bg-[#FF315A]/90 hover:shadow-[0_0_25px_rgba(255,49,90,0.6)] hover:-translate-y-0.5"
+                >
+                  <FaFileDownload className="text-sm animate-bounce" />
+                  <span>DOWNLOAD PDF</span>
+                </a>
+              </div>
 
             </div>
           </div>
