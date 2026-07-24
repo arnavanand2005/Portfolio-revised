@@ -13,13 +13,14 @@ const FullscreenDotFieldBg = memo(() => {
   return (
     <div className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none">
       <DotField
-        dotRadius={2.5}
-        dotSpacing={22}
-        gradientFrom="rgba(255, 49, 90, 1.0)"  
-        gradientTo="rgba(255, 0, 50, 0.6)"    
-        glowColor="rgba(255, 49, 90, 0.5)"      
-        bulgeStrength={50}
-        cursorRadius={250}
+        dotRadius={1.2}
+        dotSpacing={16}
+        gradientFrom="rgba(0, 229, 255, 0.95)"
+        gradientVia="rgba(255, 255, 255, 0.85)"
+        gradientTo="rgba(255, 49, 90, 0.95)"
+        glowColor="rgba(0, 229, 255, 0.4)"
+        bulgeStrength={25}
+        cursorRadius={180}
       />
     </div>
   );
@@ -79,13 +80,13 @@ export default function About() {
       onMouseMove={handleMouseMove}
       className="min-h-screen py-24 px-4 sm:px-8 lg:px-12 relative overflow-hidden font-mono select-none bg-[#030305] text-[#F5F5F5] z-10"
     >
-      {/* 1. LIGHTWEIGHT DOTFIELD BACKGROUND */}
+      {/* 1. SHARP TRICOLOR DOTFIELD BACKGROUND */}
       <motion.div style={{ x: bgX, y: bgY }} className="absolute inset-0 z-0">
         <FullscreenDotFieldBg />
       </motion.div>
 
       {/* OVERLAYS & GRADIENTS */}
-      <div className="absolute inset-0 bg-[#030305]/50 backdrop-blur-[1px] pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-[#030305]/40 backdrop-blur-[1px] pointer-events-none z-[1]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#030305_90%)] pointer-events-none z-[2]" />
 
       {/* FLOATING HUD CORNER WIDGETS */}
