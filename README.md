@@ -235,25 +235,25 @@ Inspired by futuristic user interfaces and cyberpunk aesthetics, including:
 
 ## Home
 
-> Add screenshot here
+<img width="1408" height="813" alt="image" src="https://github.com/user-attachments/assets/66e82acc-b498-48c9-8873-50b065847e02" />
 
 ---
 
 ## About
 
-> Add screenshot here
+<img width="1406" height="816" alt="image" src="https://github.com/user-attachments/assets/2ff11a26-74c9-49c9-975e-b0d27f3457e6" />
 
 ---
 
 ## Projects
 
-> Add screenshot here
+<img width="1376" height="810" alt="image" src="https://github.com/user-attachments/assets/4f2a8350-70e6-47fa-b6a4-19e50d28d5f7" />
 
 ---
 
 ## Mobile View
 
-> Add screenshot here
+<img width="1170" height="2532" alt="image" src="https://github.com/user-attachments/assets/522dbf68-d363-4c4d-a83f-95db350515bb" />
 
 ---
 
