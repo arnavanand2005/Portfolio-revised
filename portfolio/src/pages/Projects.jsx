@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useMemo } from "react";
 import DecryptedText from "../components/DecryptedText";
 import BorderGlow from "../components/BorderGlow";
@@ -168,10 +167,10 @@ export default function Projects() {
 
   const hasValidImage = selected.image && selected.image !== "/placeholder-project.png";
 
-  // FIX: Memoize array items so references don't break during state flips
+  // FIX: Provide a valid SVG data URI placeholder for items with image: null (like RESEARCH.LOG)
   const galleryItems = useMemo(() => {
     return projects.map((project) => ({
-      image: project.image,
+      image: project.image || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%2309090b"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%2300E5FF" font-family="monospace" font-size="20">RESEARCH.LOG</text></svg>',
       text: project.title,
     }));
   }, []);
@@ -179,20 +178,20 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen bg-black py-24 px-4 sm:px-8 lg:px-12 relative overflow-hidden font-mono select-none"
+      className="min-h-screen bg-black py-16 sm:py-24 px-4 sm:px-8 lg:px-12 relative overflow-visible font-mono select-none"
     >
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,229,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(0,229,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#000000_95%)] pointer-events-none" />
 
-      <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-red-500/5 blur-[160px] rounded-full pointer-events-none animate-pulse" />
+      <div className="absolute top-20 left-10 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-red-500/5 blur-[160px] rounded-full pointer-events-none animate-pulse" />
 
       <div className="absolute top-4 left-4 text-zinc-800 text-[10px] tracking-widest hidden md:block">SYS_REF // 409-NX</div>
       <div className="absolute top-4 right-4 text-zinc-800 text-[10px] tracking-widest hidden md:block">LOC_0x7FFF</div>
 
       <div className="max-w-7xl mx-auto relative z-10">
 
-        <div className="text-center mb-20 relative">
+        <div className="text-center mb-12 sm:mb-20 relative">
           <div className="react-bits-glitch inline-block">
             <DecryptedText
               text="PROJECTS.EXE"
@@ -202,7 +201,7 @@ export default function Projects() {
               revealDirection="center"
               className="text-white"
               encryptedClassName="text-cyan-400"
-              parentClassName="text-5xl sm:text-7xl font-black tracking-[-0.03em] uppercase"
+              parentClassName="text-4xl sm:text-7xl font-black tracking-[-0.03em] uppercase"
             />
           </div>
 
@@ -215,10 +214,11 @@ export default function Projects() {
           </p>
         </div>
 
-        <div className="h-[340px] mb-20 relative">
+        {/* MOBILE STYLED GALLERY CONTAINER */}
+        <div className="h-[280px] sm:h-[380px] mb-12 sm:mb-20 relative w-full touch-pan-x [transform-style:preserve-3d]">
           <CircularGallery
             items={galleryItems}
-            bend={2}
+            bend={1.5}
             textColor="#ffffff"
             borderRadius={0.08}
             scrollEase={0.08}
@@ -250,7 +250,7 @@ export default function Projects() {
                   <span className="text-[10px] text-zinc-600 font-mono tracking-tighter">DATA_POOL: {projects.length}</span>
                 </div>
 
-                <div className="space-y-2 max-h-[580px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-zinc-800">
+                <div className="space-y-2 max-h-[400px] sm:max-h-[580px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-zinc-800">
                   {projects.map((project, index) => {
                     const isSelected = selected.title === project.title;
                     return (
@@ -307,7 +307,7 @@ export default function Projects() {
             glowIntensity={1.4}
             className="h-full w-full"
           >
-            <div className="p-6 sm:p-10 bg-zinc-950/90 rounded-[20px] border border-zinc-900/80 relative overflow-hidden backdrop-blur-md flex flex-col justify-between h-full">
+            <div className="p-5 sm:p-10 bg-zinc-950/90 rounded-[20px] border border-zinc-900/80 relative overflow-hidden backdrop-blur-md flex flex-col justify-between h-full">
               
               <div className="absolute top-4 right-4 text-[9px] text-zinc-700 tracking-tighter hidden sm:block">
                 SYS_LOC // [X: 104.22 // Y: 490.11]
@@ -324,7 +324,7 @@ export default function Projects() {
                       <p className="text-red-500 text-[10px] font-black tracking-[0.35em] uppercase">
                         // PROTOCOL: {selected.category}
                       </p>
-                      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tighter mt-1 uppercase">
+                      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tighter mt-1 uppercase">
                         {selected.title}
                       </h2>
                     </div>
@@ -346,7 +346,7 @@ export default function Projects() {
                 <div className="grid xl:grid-cols-[1.25fr_0.75fr] gap-8 items-start">
                   
                   <div className="space-y-5">
-                    <div className="h-[340px] sm:h-[400px] rounded-xl border border-zinc-800 bg-black flex flex-col items-center justify-center p-2 relative overflow-hidden group">
+                    <div className="h-[260px] sm:h-[400px] rounded-xl border border-zinc-800 bg-black flex flex-col items-center justify-center p-2 relative overflow-hidden group">
                       
                       <div className="absolute top-4 left-4 w-3 h-3 border-t-2 border-l-2 border-cyan-400/40 group-hover:border-cyan-400 transition-colors" />
                       <div className="absolute top-4 right-4 w-3 h-3 border-t-2 border-r-2 border-cyan-400/40 group-hover:border-cyan-400 transition-colors" />
@@ -360,6 +360,7 @@ export default function Projects() {
                           src={getActiveImageSrc()}
                           alt={selected.title}
                           className="w-full h-full object-cover rounded-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="text-center space-y-2 z-10">
@@ -402,7 +403,7 @@ export default function Projects() {
                         href={selected.demo}
                         target="_blank"
                         rel="noreferrer"
-                        className="relative group py-4 rounded-xl overflow-hidden font-black text-xs tracking-[0.2em] text-center text-black bg-gradient-to-r from-cyan-400 to-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                        className="relative group py-3 sm:py-4 rounded-xl overflow-hidden font-black text-[10px] sm:text-xs tracking-[0.2em] text-center text-black bg-gradient-to-r from-cyan-400 to-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
                       >
                         LAUNCH_LIVE_CLIENT →
                       </a>
@@ -411,7 +412,7 @@ export default function Projects() {
                         href={selected.github}
                         target="_blank"
                         rel="noreferrer"
-                        className="relative group py-4 rounded-xl overflow-hidden font-black text-xs tracking-[0.2em] text-center border border-red-500/40 text-red-400 bg-red-950/10 hover:border-red-500 hover:bg-red-500 hover:text-white hover:shadow-[0_0_25px_rgba(239,68,68,0.3)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                        className="relative group py-3 sm:py-4 rounded-xl overflow-hidden font-black text-[10px] sm:text-xs tracking-[0.2em] text-center border border-red-500/40 text-red-400 bg-red-950/10 hover:border-red-500 hover:bg-red-500 hover:text-white hover:shadow-[0_0_25px_rgba(239,68,68,0.3)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
                       >
                         SOURCE_FILE [GIT]
                       </a>
@@ -464,4 +465,3 @@ export default function Projects() {
     </section>
   );
 }
-

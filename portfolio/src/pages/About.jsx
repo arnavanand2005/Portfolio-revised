@@ -328,28 +328,27 @@ export default function About() {
                   Access comprehensive documentation detailing software architecture experience, engineering achievements, and technical stack implementations.
                 </p>
               </div>
+                         
+<div className="flex flex-wrap sm:flex-nowrap items-center gap-4 w-full md:w-auto">
+  <a
+    href="https://drive.google.com/file/d/1X8fiJtYUjHT5rsIBqn5n9nIhU-PwFymA/view?usp=sharing"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-5 py-3 bg-[#030305] border border-[#00E5FF]/40 text-[#00E5FF] rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:border-[#00E5FF] hover:bg-[#00E5FF]/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:-translate-y-0.5"
+  >
+    <FaExternalLinkAlt className="text-xs" />
+    <span>PREVIEW</span>
+  </a>
 
-              {/* Right Side: Interactive Action Buttons */}
-              <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 w-full md:w-auto">
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-5 py-3 bg-[#030305] border border-[#00E5FF]/40 text-[#00E5FF] rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:border-[#00E5FF] hover:bg-[#00E5FF]/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:-translate-y-0.5"
-                >
-                  <FaExternalLinkAlt className="text-xs" />
-                  <span>PREVIEW</span>
-                </a>
-
-                <a
-                  href="/resume.pdf"
-                  download="Arnav_Anand_Resume.pdf"
-                  className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-6 py-3 bg-[#FF315A] text-[#F5F5F5] rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:bg-[#FF315A]/90 hover:shadow-[0_0_25px_rgba(255,49,90,0.6)] hover:-translate-y-0.5"
-                >
-                  <FaFileDownload className="text-sm animate-bounce" />
-                  <span>DOWNLOAD PDF</span>
-                </a>
-              </div>
+  <a
+    href="https://drive.google.com/uc?export=download&id=1X8fiJtYUjHT5rsIBqn5n9nIhU-PwFymA"
+    download="Arnav_Anand_Resume.pdf"
+    className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-6 py-3 bg-[#FF315A] text-[#F5F5F5] rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:bg-[#FF315A]/90 hover:shadow-[0_0_25px_rgba(255,49,90,0.6)] hover:-translate-y-0.5"
+  >
+    <FaFileDownload className="text-sm animate-bounce" />
+    <span>DOWNLOAD PDF</span>
+  </a>
+</div>
 
             </div>
           </div>

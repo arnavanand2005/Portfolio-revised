@@ -248,7 +248,6 @@ export default function Contact() {
                 </form>
               </div>
 
-              {/* Data Status Bottom Footnote */}
               <div className="pt-6 mt-6 border-t border-zinc-950 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-zinc-600">
                 <div className="flex items-center gap-4">
                   <p>&gt;_ STATUS: READY_TO_LINK</p>
