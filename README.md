@@ -308,11 +308,6 @@ See the `LICENSE` file for more information.
 
 AI & Full-Stack Developer
 
-- 🌐 Portfolio: *Add your portfolio URL*
-- 💼 LinkedIn: *Add your LinkedIn*
-- 📧 Email: *Add your email*
-- 🐙 GitHub: *https://github.com/your-username*
-
 ---
 
 <div align="center">
