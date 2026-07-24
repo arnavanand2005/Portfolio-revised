@@ -4,7 +4,7 @@ import RotatingText from "../components/RotatingText";
 
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black select-none">
 
       <div className="absolute inset-0">
         <PlasmaWave
@@ -52,7 +52,6 @@ function Hero() {
 
           </div>
 
-
           <div className="px-10 py-16">
 
             <p className="mb-3 text-xs uppercase tracking-[0.45em] text-zinc-500">
@@ -86,19 +85,22 @@ function Hero() {
                   "PROBLEM SOLVER",
                   "REACT DEVELOPER",
                 ]}
-                mainClassName="rounded-xl border border-cyan-400/30 bg-zinc-900 px-5 py-3 font-mono font-black tracking-[0.2em] text-cyan-400 shadow-[0_0_30px_rgba(0,229,255,0.18)]"
+                mainClassName="rounded-xl border border-cyan-400/30 bg-zinc-900 px-5 py-3 font-mono font-black tracking-[0.2em] text-cyan-400 shadow-[0_0_30px_rgba(0,229,255,0.18)] text-sm sm:text-base !whitespace-nowrap overflow-hidden inline-flex items-center"
                 staggerFrom="last"
-                staggerDuration={0.025}
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "-120%" }}
-                splitLevelClassName="overflow-hidden"
+                staggerDuration={0.02}
+                splitBy="characters"
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-120%", opacity: 0 }}
+                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1 inline-flex"
                 transition={{
                   type: "spring",
-                  damping: 28,
-                  stiffness: 380,
+                  damping: 24,
+                  stiffness: 280,
                 }}
-                rotationInterval={2400}
+                rotationInterval={2600}
+                auto
+                loop
               />
 
             </div>
@@ -111,7 +113,6 @@ function Hero() {
             </p>
 
           </div>
-
 
           <div className="flex items-center justify-between border-t border-zinc-800 px-8 py-5 font-mono text-[10px] tracking-[0.25em] text-zinc-500">
 

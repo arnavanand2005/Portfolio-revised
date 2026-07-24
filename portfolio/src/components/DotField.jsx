@@ -3,18 +3,18 @@ import { useEffect, useRef, memo } from 'react';
 const TWO_PI = Math.PI * 2;
 
 const DotField = memo(({
-  dotRadius = 1.5,
-  dotSpacing = 14,
-  cursorRadius = 500,
+  dotRadius = 2,
+  dotSpacing = 24,
+  cursorRadius = 300,
   cursorForce = 0.1,
   bulgeOnly = true,
-  bulgeStrength = 67,
-  glowRadius = 160,
+  bulgeStrength = 40,
+  glowRadius = 200,
   sparkle = false,
   waveAmplitude = 0,
-  gradientFrom = 'rgba(168, 85, 247, 0.35)',
-  gradientTo = 'rgba(180, 151, 207, 0.25)',
-  glowColor = '#120F17',
+  gradientFrom = 'rgba(0, 229, 255, 0.6)',
+  gradientTo = 'rgba(0, 229, 255, 0.2)',
+  glowColor = 'rgba(0, 229, 255, 0.15)',
   ...rest
 }) => {
   const canvasRef = useRef(null);
@@ -24,12 +24,11 @@ const DotField = memo(({
   const mouseRef = useRef({ x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 });
   const rafRef = useRef(null);
   const sizeRef = useRef({ w: 0, h: 0, offsetX: 0, offsetY: 0 });
-  const glowOpacity = useRef(0);
-  const engagement = useRef(0);
-  const propsRef = useRef({});
-  propsRef.current = { dotRadius, dotSpacing, cursorRadius, cursorForce, bulgeOnly, bulgeStrength, sparkle, waveAmplitude, gradientFrom, gradientTo };
   const rebuildRef = useRef(null);
   const glowIdRef = useRef(`dot-field-glow-${Math.random().toString(36).slice(2, 9)}`);
+
+  const propsRef = useRef({});
+  propsRef.current = { dotRadius, dotSpacing, cursorRadius, cursorForce, bulgeOnly, bulgeStrength, sparkle, waveAmplitude, gradientFrom, gradientTo };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -41,13 +40,14 @@ const DotField = memo(({
 
     function resize() {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(doResize, 100);
+      resizeTimer = setTimeout(doResize, 50);
     }
 
     function doResize() {
+      if (!canvas || !canvas.parentElement) return;
       const rect = canvas.parentElement.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
+      const w = rect.width || window.innerWidth;
+      const h = rect.height || window.innerHeight;
 
       canvas.width = w * dpr;
       canvas.height = h * dpr;
@@ -67,11 +67,11 @@ const DotField = memo(({
 
     function buildDots(w, h) {
       const p = propsRef.current;
-      const step = p.dotRadius + p.dotSpacing;
-      const cols = Math.floor(w / step);
-      const rows = Math.floor(h / step);
-      const padX = (w % step) / 2;
-      const padY = (h % step) / 2;
+      const step = p.dotRadius * 2 + p.dotSpacing;
+      const cols = Math.max(1, Math.floor(w / step));
+      const rows = Math.max(1, Math.floor(h / step));
+      const padX = (w - cols * step) / 2;
+      const padY = (h - rows * step) / 2;
       const dots = new Array(rows * cols);
       let idx = 0;
 
@@ -87,22 +87,15 @@ const DotField = memo(({
 
     function onMouseMove(e) {
       const s = sizeRef.current;
-      mouseRef.current.x = e.pageX - s.offsetX;
-      mouseRef.current.y = e.pageY - s.offsetY;
-    }
+      mouseRef.current.x = e.clientX - (s.offsetX - window.scrollX);
+      mouseRef.current.y = e.clientY - (s.offsetY - window.scrollY);
 
-    function updateMouseSpeed() {
-      const m = mouseRef.current;
-      const dx = m.prevX - m.x;
-      const dy = m.prevY - m.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      m.speed += (dist - m.speed) * 0.5;
-      if (m.speed < 0.001) m.speed = 0;
-      m.prevX = m.x;
-      m.prevY = m.y;
+      if (glowEl) {
+        glowEl.setAttribute('cx', mouseRef.current.x);
+        glowEl.setAttribute('cy', mouseRef.current.y);
+        glowEl.style.opacity = '1';
+      }
     }
-
-    const speedInterval = setInterval(updateMouseSpeed, 20);
 
     let frameCount = 0;
 
@@ -115,19 +108,6 @@ const DotField = memo(({
       const len = dots.length;
       const t = frameCount * 0.02;
 
-      const targetEngagement = Math.min(m.speed / 5, 1);
-      engagement.current += (targetEngagement - engagement.current) * 0.06;
-      if (engagement.current < 0.001) engagement.current = 0;
-      const eng = engagement.current;
-
-      glowOpacity.current += (eng - glowOpacity.current) * 0.08;
-
-      if (glowEl) {
-        glowEl.setAttribute('cx', m.x);
-        glowEl.setAttribute('cy', m.y);
-        glowEl.style.opacity = glowOpacity.current;
-      }
-
       ctx.clearRect(0, 0, w, h);
 
       const grad = ctx.createLinearGradient(0, 0, w, h);
@@ -137,65 +117,43 @@ const DotField = memo(({
 
       const cr = p.cursorRadius;
       const crSq = cr * cr;
-      const rad = p.dotRadius / 2;
+      const rad = p.dotRadius;
       const isBulge = p.bulgeOnly;
 
       ctx.beginPath();
 
       for (let i = 0; i < len; i++) {
         const d = dots[i];
+        if (!d) continue;
+
         const dx = m.x - d.ax;
         const dy = m.y - d.ay;
         const distSq = dx * dx + dy * dy;
 
-        if (distSq < crSq && eng > 0.01) {
+        if (distSq < crSq) {
           const dist = Math.sqrt(distSq);
           if (isBulge) {
-            const t = 1 - dist / cr;
-            const push = t * t * p.bulgeStrength * eng;
+            const factor = 1 - dist / cr;
+            const push = factor * factor * p.bulgeStrength;
             const angle = Math.atan2(dy, dx);
             d.sx += (d.ax - Math.cos(angle) * push - d.sx) * 0.15;
             d.sy += (d.ay - Math.sin(angle) * push - d.sy) * 0.15;
-          } else {
-            const angle = Math.atan2(dy, dx);
-            const move = (500 / dist) * (m.speed * p.cursorForce);
-            d.vx += Math.cos(angle) * -move;
-            d.vy += Math.sin(angle) * -move;
           }
         } else if (isBulge) {
           d.sx += (d.ax - d.sx) * 0.1;
           d.sy += (d.ay - d.sy) * 0.1;
         }
 
-        if (!isBulge) {
-          d.vx *= 0.9;
-          d.vy *= 0.9;
-          d.x = d.ax + d.vx;
-          d.y = d.ay + d.vy;
-          d.sx += (d.x - d.sx) * 0.1;
-          d.sy += (d.y - d.sy) * 0.1;
-        }
-
         let drawX = d.sx;
         let drawY = d.sy;
+
         if (p.waveAmplitude > 0) {
           drawY += Math.sin(d.ax * 0.03 + t) * p.waveAmplitude;
-          drawX += Math.cos(d.ay * 0.03 + t * 0.7) * p.waveAmplitude * 0.5;
+          drawX += Math.cos(d.ay * 0.03 + t * 0.7) * (p.waveAmplitude * 0.5);
         }
 
-        if (p.sparkle) {
-          const hash = ((i * 2654435761) ^ (frameCount >> 3)) >>> 0;
-          if ((hash % 100) < 3) {
-            ctx.moveTo(drawX + rad * 1.8, drawY);
-            ctx.arc(drawX, drawY, rad * 1.8, 0, TWO_PI);
-          } else {
-            ctx.moveTo(drawX + rad, drawY);
-            ctx.arc(drawX, drawY, rad, 0, TWO_PI);
-          }
-        } else {
-          ctx.moveTo(drawX + rad, drawY);
-          ctx.arc(drawX, drawY, rad, 0, TWO_PI);
-        }
+        ctx.moveTo(drawX + rad, drawY);
+        ctx.arc(drawX, drawY, rad, 0, TWO_PI);
       }
 
       ctx.fill();
@@ -215,12 +173,10 @@ const DotField = memo(({
 
     return () => {
       cancelAnimationFrame(rafRef.current);
-      clearInterval(speedInterval);
       clearTimeout(resizeTimer);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMouseMove);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -228,7 +184,7 @@ const DotField = memo(({
   }, [dotRadius, dotSpacing]);
 
   return (
-    <div className="w-full h-full relative" {...rest}>
+    <div className="w-full h-full relative overflow-hidden" {...rest}>
       <canvas
         ref={canvasRef}
         style={{
@@ -236,6 +192,7 @@ const DotField = memo(({
           inset: 0,
           width: '100%',
           height: '100%',
+          pointerEvents: 'none',
         }}
       />
       <svg
@@ -260,7 +217,7 @@ const DotField = memo(({
           cy="-9999"
           r={glowRadius}
           fill={`url(#${glowIdRef.current})`}
-          style={{ opacity: 0, willChange: 'opacity' }}
+          style={{ opacity: 0, transition: 'opacity 0.3s ease' }}
         />
       </svg>
     </div>

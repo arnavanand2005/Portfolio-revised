@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
 import cv from "../assets/cv.pdf";
 
+
 const CardNav = ({
   items,
   className = "",

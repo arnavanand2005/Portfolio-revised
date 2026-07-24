@@ -20,7 +20,6 @@ import edusity4 from "../assets/edusity-4.png";
 import skysense from "../assets/skysense.png";
 import sqac from "../assets/sqac.png";
 import mineverse from "../assets/mineverse.png";
-import PlasmaWave from "../components/PlasmaWave";
 import CircularGallery from '../components/CircularGallery';
 
 const projects = [
